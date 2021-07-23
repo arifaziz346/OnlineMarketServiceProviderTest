@@ -13,10 +13,11 @@
         <activity android:name=".Products.CreateProduct"></activity>
         <activity android:name=".Shop.ShopInformation" />
         <activity android:name=".Auth.register" />
-        <activity android:name=".Auth.login" />
+        <activity android:name=".MainActivity" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Auth.login"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
