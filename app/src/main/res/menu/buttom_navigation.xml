@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/nav_dashboard"
+    android:icon="@drawable/dashboard_black_24dp"
+    android:title="Dashboard"></item>
+
+    <item android:id="@+id/nav_myOrder"
+        android:icon="@drawable/my_orders_black_24dp"
+        android:title="My Orders"></item>
+
+    <item android:id="@+id/nav_customer"
+        android:icon="@drawable/customer_black_24dp"
+        android:title="Customers"></item>
+
+    <item android:id="@+id/nav_products"
+        android:icon="@drawable/products_black_24dp"
+        android:title="Products"></item>
+</menu>
