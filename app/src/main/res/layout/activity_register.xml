@@ -3,37 +3,40 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="50dp"
-    android:paddingRight="50dp"
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp"
     android:orientation="vertical"
     android:background="@color/ColorLightBlueWhite">
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="90dp"
-        android:background="@drawable/om_logo"
-        android:layout_gravity="center"
-        android:layout_marginTop="70dp"
-        android:layout_marginBottom="80dp"/>
+<!--    <ImageView-->
+<!--        android:layout_width="100dp"-->
+<!--        android:layout_height="90dp"-->
+<!--        android:background="@drawable/om_logo"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:layout_marginBottom="10dp"/>-->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Register"
+        android:text="Register Shop"
         android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:textStyle="bold"
+        android:textSize="18sp"
         android:textColor="@color/colorPrimary"></TextView>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtLayoutFullNameSignUp"
+        android:id="@+id/txtLayoutFullShopNameSignUp"
         android:hint="Enter Your Name"
         android:layout_marginBottom="6dp"/>
 
     <com.google.android.material.textfield.TextInputEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtFullNameSignUp"
-        android:hint="Full Name"
+        android:id="@+id/txtShopNameSignUp"
+        android:hint="Shop Name"
         android:inputType="text"
         android:textSize="15sp">
     </com.google.android.material.textfield.TextInputEditText>
@@ -57,6 +60,21 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/txtLayoutShopPhoneSignUp"
+        android:hint="Enter Your Email"
+        android:layout_marginBottom="6dp"/>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtShopPhoneSignUp"
+        android:hint="Mobile Number"
+        android:inputType="number"
+        android:textSize="15sp">
+    </com.google.android.material.textfield.TextInputEditText>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/txtLayoutPasswordSignUp"
         android:hint="Enter Your Name"
         android:layout_marginBottom="6dp"/>
@@ -69,25 +87,61 @@
         android:inputType="textPassword"
         android:textSize="15sp">
     </com.google.android.material.textfield.TextInputEditText>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtLayoutCitySignUp"
+        android:hint="Enter Your Name"
+        android:layout_marginBottom="6dp"/>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtCitySignUp"
+        android:hint="City"
+        android:inputType="textPassword"
+        android:textSize="15sp">
+    </com.google.android.material.textfield.TextInputEditText>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtLayoutAddressSignUp"
+        android:hint="Enter Your Name"
+        android:layout_marginBottom="6dp"/>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtAddressSignUp"
+        android:hint="Shop Address"
+        android:inputType="textPassword"
+        android:textSize="15sp">
+    </com.google.android.material.textfield.TextInputEditText>
     <RadioGroup
         android:id="@+id/radio"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
 
         <RadioButton
             android:id="@+id/radioMale"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Male"
             android:buttonTint="@color/colorPrimary"
-            android:checked="true"/>
+           android:checked="true"/>
 
         <RadioButton
             android:id="@+id/radioFemale"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:buttonTint="@color/colorPrimary"
-            android:text="Female" />
+            android:text="Female"
+            android:layout_marginLeft="10dp"/>
 
     </RadioGroup>
 
@@ -99,8 +153,9 @@
         android:background="@drawable/btn_round"
         android:textColor="@color/white"
         android:textSize="16dp"
-        android:layout_marginBottom="70dp"
-        android:text="SIGN Up">
+        android:layout_marginBottom="5dp"
+        android:text="SIGN Up"
+        android:onClick="signUp">
 
     </androidx.appcompat.widget.AppCompatButton>
 
@@ -109,19 +164,20 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
+        android:layout_marginTop="20dp"
         >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Already have account?"
-            android:layout_marginRight="6dp"/>
+            android:layout_marginRight="2dp"/>
         <TextView
-            android:id="@+id/txtSignUp"
+            android:id="@+id/txtSignIn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign up"
+            android:text="SignIn"
             android:textColor="@color/colorPrimary"
-            android:layout_marginRight="6dp">
+            android:onClick="signIn">
 
         </TextView>
 

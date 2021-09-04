@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.Toast
 import com.example.onlinemarketserviceprovider.R
 import com.example.onlinemarketserviceprovider.databinding.ActivityLoginBinding
 
@@ -14,9 +15,11 @@ class login : AppCompatActivity() {
         var binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(R.layout.activity_login)
 
-        binding.txtSignUp.setOnClickListener(View.OnClickListener {
-            var intent = Intent(this,register::class.java)
-            startActivity(intent)
-        })
+
+    }
+
+    fun signUp(view: View) {
+        var intent = Intent(this,register::class.java)
+        startActivity(intent)
     }
 }

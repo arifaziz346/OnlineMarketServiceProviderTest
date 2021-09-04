@@ -13,15 +13,23 @@
         android:layout_height="90dp"
         android:background="@drawable/om_logo"
         android:layout_gravity="center"
-        android:layout_marginTop="70dp"
-        android:layout_marginBottom="80dp"/>
+        android:layout_marginTop="70dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Online Market"
+        android:textStyle="bold"
+        android:textSize="18sp"></TextView>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Login"
         android:layout_gravity="center"
-        android:textColor="@color/colorPrimary"></TextView>
-
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginTop="70dp"></TextView>
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -88,7 +96,8 @@
             android:layout_height="wrap_content"
             android:text="Sign up"
             android:textColor="@color/colorPrimary"
-            android:layout_marginRight="6dp">
+            android:layout_marginRight="6dp"
+            android:onClick="signUp">
 
         </TextView>
 

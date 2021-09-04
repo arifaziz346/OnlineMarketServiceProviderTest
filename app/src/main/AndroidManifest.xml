@@ -3,6 +3,7 @@
     package="com.example.onlinemarketserviceprovider">
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.CAMERA"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,10 +13,10 @@
         android:theme="@style/Theme.OnlineMarketServiceProvider">
         <activity android:name=".Products.CreateProduct"></activity>
         <activity android:name=".Shop.ShopInformation" />
-        <activity android:name=".Auth.register" />
+        <activity android:name=".Auth.login" />
         <activity android:name=".MainActivity" />
         <activity
-            android:name=".Auth.login"
+            android:name=".Auth.register"
             android:exported="true">
 
             <intent-filter>

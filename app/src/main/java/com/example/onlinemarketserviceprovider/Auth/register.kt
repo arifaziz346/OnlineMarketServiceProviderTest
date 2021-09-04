@@ -14,9 +14,14 @@ class register : AppCompatActivity() {
         var binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(R.layout.activity_register)
 
-    binding.btnSignUp.setOnClickListener(View.OnClickListener {
+    }
+    fun signIn(view: View){
+        var intent = Intent(this,login::class.java)
+        startActivity(intent)
+    }
+
+    fun signUp(view:View){
         var intent = Intent(this,MainActivity::class.java)
         startActivity(intent)
-    })
     }
 }
