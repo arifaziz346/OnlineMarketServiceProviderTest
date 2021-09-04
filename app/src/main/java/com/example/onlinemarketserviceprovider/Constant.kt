@@ -7,3 +7,4 @@ public class Constant {
         val  LoginShop:String =URL+"api/loginShop"
     }
 }
+

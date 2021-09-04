@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="50dp"
-    android:paddingRight="50dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp"
     android:orientation="vertical"
     android:background="@color/ColorLightBlueWhite">
 
@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Online Market"
+        android:text="Online Market Service Provider"
         android:textStyle="bold"
         android:textSize="18sp"></TextView>
     <TextView
@@ -33,51 +33,59 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/txtLayoutEmailSignIn"
-        android:hint="Enter Your Name"
-        android:layout_marginBottom="6dp"/>
-
-
-    <com.google.android.material.textfield.TextInputEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtEmailSignIn"
         android:hint="Email"
-        android:inputType="textEmailAddress"
-        android:textSize="15sp">
-    </com.google.android.material.textfield.TextInputEditText>
+        android:layout_marginBottom="6dp"
 
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtEmailSignIn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:textSize="15sp">
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+    />
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/txtLayoutPasswordSignIn"
-        android:hint="Enter Your Name"
-        android:layout_marginBottom="6dp"/>
-
-    <com.google.android.material.textfield.TextInputEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtPasswordSignIn"
+        android:layout_marginBottom="6dp"
+        app:endIconMode="password_toggle"
         android:hint="Password"
-        android:inputType="textPassword"
-        android:textSize="15sp">
-    </com.google.android.material.textfield.TextInputEditText>
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtPasswordSignIn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            app:errorEnabled="true"
+            android:textSize="15sp">
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <androidx.appcompat.widget.AppCompatButton
+
+
+    <Button
         android:id="@+id/btnSignIn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:background="@drawable/btn_round"
         android:textColor="@color/white"
-
         android:textSize="16dp"
         android:layout_marginBottom="70dp"
         android:text="SIGN IN">
 
-    </androidx.appcompat.widget.AppCompatButton>
+    </Button>
 
     <LinearLayout
         android:layout_width="match_parent"

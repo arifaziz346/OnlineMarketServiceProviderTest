@@ -14,6 +14,7 @@ class register : AppCompatActivity() {
         var binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(R.layout.activity_register)
 
+
     }
     fun signIn(view: View){
         var intent = Intent(this,login::class.java)
