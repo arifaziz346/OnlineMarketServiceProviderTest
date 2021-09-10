@@ -3,6 +3,7 @@ package com.example.onlinemarketserviceprovider.Auth
 import android.app.PendingIntent.getActivity
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
@@ -21,11 +22,14 @@ import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.example.onlinemarketserviceprovider.Constant
 import com.example.onlinemarketserviceprovider.Helper.Network
+import com.example.onlinemarketserviceprovider.MainActivity
 import com.example.onlinemarketserviceprovider.R
 import com.example.onlinemarketserviceprovider.databinding.ActivityLoginBinding
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import org.json.JSONException
 import org.json.JSONObject
+import org.json.JSONTokener
 
 class login : AppCompatActivity() {
     private   var txtEmail:TextInputEditText?=null
@@ -33,6 +37,7 @@ class login : AppCompatActivity() {
     private   var emailLayout:TextInputLayout?=null
     private   var passwordLayout: TextInputLayout?=null
     private var btnSignIn:Button?=null
+//    private var sharedPreferences:SharedPreferences?=null
 
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -50,20 +55,21 @@ class login : AppCompatActivity() {
 
         btnSignIn!!.setOnClickListener {
             if (validate()) {
-                if(Network.isOnline(this)){
-                    logIn(txtEmail!!.getText().toString(),txtEmail!!.getText().toString())
-                }else{
-                    messageError()
-                }
+                logIn(txtEmail!!.getText().toString(),txtPassword!!.getText().toString())
+//                if(Network.isOnline(this)){
+//                    logIn(txtEmail!!.getText().toString(),txtEmail!!.getText().toString())
+//                }else{
+//                    messageError()
+//                }
 
             }
         }
 }
 
-    fun signUp(view: View) {
-        var intent = Intent(this,register::class.java)
-        startActivity(intent)
-    }
+//    fun signUp(view: View) {
+//        var intent = Intent(this,register::class.java)
+//        startActivity(intent)
+//    }
 
     //Use to Validate Email and Password
     fun validate():Boolean{
@@ -88,10 +94,43 @@ class login : AppCompatActivity() {
       var UrlLogin = Constant.LoginShop
 
 
-        val jsonObjectRequest = JsonObjectRequest(Request.Method.POST, "http://192.168.43.193:8080/api/loginShop", joLogIn,
-            Response.Listener {
+        val jsonObjectRequest = JsonObjectRequest(Request.Method.POST, "http://192.168.43.193:8080/api/loginShop",joLogIn,
+            Response.Listener {response->
 
-                Toast.makeText(this,"WellCome",Toast.LENGTH_SHORT).show()
+               try {
+
+                  if(response.getBoolean("success")){
+                      val JSONObject = response.getJSONObject("Shops")
+//                      Toast.makeText(this,"WellCome: "+response.get("Shops"),Toast.LENGTH_SHORT).show()
+
+                      Toast.makeText(this,"ShopName: "+JSONObject.get("ShopName"),Toast.LENGTH_SHORT).show()
+                      var  sharedPreferences = getSharedPreferences("ShopDetail", MODE_PRIVATE)
+                      var editor =sharedPreferences!!.edit()
+                      editor.putString("Token",response.get("token").toString())
+                      editor.putString("ShopID",JSONObject.get("id").toString())
+                      editor.putString("ShopName",JSONObject.get("ShopName").toString())
+                      editor.putString("ShopPhoneNumber",JSONObject.get("id").toString())
+                      editor.putString("ShopType",JSONObject.get("ShopType").toString())
+                      editor.putString("City",JSONObject.get("City").toString())
+                      editor.putString("Province",JSONObject.get("Province").toString())
+                      editor.putString("ShopType",JSONObject.get("ShopType").toString())
+                      editor.apply()
+
+                      val  intent =Intent(this,MainActivity::class.java)
+                      startActivity(intent)
+
+                  }else{
+                      Toast.makeText(this,"Sorry! your account has been blocked.",Toast.LENGTH_SHORT).show()
+                  }
+
+//                  var  sharedPreferences = getSharedPreferences("ShopDetail", MODE_PRIVATE)
+//                   var editor =sharedPreferences!!.edit()
+//                   editor
+
+               }catch (e:JSONException ){
+//                   Toast.makeText(this,"Error: "+e.printStackTrace(),Toast.LENGTH_SHORT).show()
+                   Toast.makeText(this,"Invalid Login!"+e.toString(),Toast.LENGTH_SHORT).show()
+               }
 
             },Response.ErrorListener { error ->
                 // TODO: Handle error

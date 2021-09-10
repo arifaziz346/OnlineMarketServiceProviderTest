@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/ColorLightBlueWhite">
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingLeft="30dp"
     android:paddingRight="30dp"
     android:orientation="vertical"
     android:background="@color/ColorLightBlueWhite">
+
 
 <!--    <ImageView-->
 <!--        android:layout_width="100dp"-->
@@ -28,98 +36,130 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtLayoutFullShopNameSignUp"
-        android:hint="Enter Your Name"
-        android:layout_marginBottom="6dp"/>
+        android:id="@+id/txtLayoutShopNameSignUp"
+        android:hint=""
+        android:layout_marginBottom="6dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
     <com.google.android.material.textfield.TextInputEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtShopNameSignUp"
+        android:id="@+id/ShopNameSignUp"
         android:hint="Shop Name"
         android:inputType="text"
         android:textSize="15sp">
     </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/txtLayoutEmailSignUp"
-        android:hint="Enter Your Email"
-        android:layout_marginBottom="6dp"/>
+        android:hint=""
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginBottom="6dp">
 
     <com.google.android.material.textfield.TextInputEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtEmailSignUp"
+        android:id="@+id/EmailSignUp"
         android:hint="Email"
         android:inputType="textEmailAddress"
         android:textSize="15sp">
     </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtLayoutPasswordSignUp"
+        android:hint=""
+        app:endIconMode="password_toggle"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginBottom="6dp">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/PasswordSignUp"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:textSize="15sp">
+    </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/txtLayoutShopPhoneSignUp"
-        android:hint="Enter Your Email"
-        android:layout_marginBottom="6dp"/>
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtShopPhoneSignUp"
-        android:hint="Mobile Number"
-        android:inputType="number"
-        android:textSize="15sp">
-    </com.google.android.material.textfield.TextInputEditText>
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtLayoutPasswordSignUp"
-        android:hint="Enter Your Name"
-        android:layout_marginBottom="6dp"/>
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtPasswordSignUp"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:textSize="15sp">
-    </com.google.android.material.textfield.TextInputEditText>
-
+        android:hint=""
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginBottom="6dp">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ShopPhoneSignUp"
+            android:hint="Mobile Number"
+            android:inputType="number"
+            android:textSize="15sp">
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/txtLayoutCitySignUp"
-        android:hint="Enter Your Name"
-        android:layout_marginBottom="6dp"/>
+        android:hint=""
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginBottom="6dp">
 
     <com.google.android.material.textfield.TextInputEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtCitySignUp"
+        android:id="@+id/CitySignUp"
         android:hint="City"
         android:inputType="textPassword"
         android:textSize="15sp">
     </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/txtLayoutAddressSignUp"
-        android:hint="Enter Your Name"
-        android:layout_marginBottom="6dp"/>
+        android:hint=""
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginBottom="6dp">
 
     <com.google.android.material.textfield.TextInputEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtAddressSignUp"
-        android:hint="Shop Address"
+        android:id="@+id/AddressSignUp"
+        android:hint="Address"
         android:inputType="textPassword"
         android:textSize="15sp">
     </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtLayoutShopTypeSignUp"
+        android:hint=""
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginBottom="6dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ShopTypeSignUp"
+            android:hint="Shop Type"
+            android:inputType="textPassword"
+            android:textSize="15sp">
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
     <RadioGroup
         android:id="@+id/radio"
         android:layout_width="wrap_content"
@@ -133,7 +173,7 @@
             android:layout_height="wrap_content"
             android:text="Male"
             android:buttonTint="@color/colorPrimary"
-           android:checked="true"/>
+            android:checked="true"/>
 
         <RadioButton
             android:id="@+id/radioFemale"
@@ -164,7 +204,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         >
         <TextView
             android:layout_width="wrap_content"
@@ -182,6 +222,6 @@
         </TextView>
 
     </LinearLayout>
-
-
 </LinearLayout>
+    </ScrollView>
+
