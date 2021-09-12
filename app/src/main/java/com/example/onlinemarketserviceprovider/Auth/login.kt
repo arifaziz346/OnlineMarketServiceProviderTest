@@ -114,6 +114,7 @@ class login : AppCompatActivity() {
                       editor.putString("City",JSONObject.get("City").toString())
                       editor.putString("Province",JSONObject.get("Province").toString())
                       editor.putString("ShopType",JSONObject.get("ShopType").toString())
+                      editor.putBoolean("register",true)
                       editor.apply()
 
                       val  intent =Intent(this,MainActivity::class.java)

@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/ShopNameSignUp"
         android:hint="Shop Name"
-        android:inputType="text"
+        android:inputType="textFilter"
         android:textSize="15sp">
     </com.google.android.material.textfield.TextInputEditText>
     </com.google.android.material.textfield.TextInputLayout>
@@ -56,16 +56,20 @@
         android:layout_height="wrap_content"
         android:id="@+id/txtLayoutEmailSignUp"
         android:hint=""
+        app:endIconMode="clear_text"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_marginBottom="6dp">
+        android:layout_marginBottom="6dp"
+
+        >
 
     <com.google.android.material.textfield.TextInputEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/EmailSignUp"
         android:hint="Email"
-        android:inputType="textEmailAddress"
-        android:textSize="15sp">
+        android:textSize="15sp"
+        android:inputType="textFilter"
+        >
     </com.google.android.material.textfield.TextInputEditText>
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -95,6 +99,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/txtLayoutShopPhoneSignUp"
         android:hint=""
+        app:counterEnabled="true"
+        app:counterMaxLength="11"
+        app:endIconMode="clear_text"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_marginBottom="6dp">
         <com.google.android.material.textfield.TextInputEditText
@@ -103,7 +110,10 @@
             android:id="@+id/ShopPhoneSignUp"
             android:hint="Mobile Number"
             android:inputType="number"
-            android:textSize="15sp">
+            android:textSize="15sp"
+            android:maxLength="11"
+            android:digits="0123456789"
+            >
         </com.google.android.material.textfield.TextInputEditText>
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -120,7 +130,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/CitySignUp"
         android:hint="City"
-        android:inputType="textPassword"
         android:textSize="15sp">
     </com.google.android.material.textfield.TextInputEditText>
     </com.google.android.material.textfield.TextInputLayout>
@@ -138,7 +147,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/AddressSignUp"
         android:hint="Address"
-        android:inputType="textPassword"
+        android:inputType="text"
         android:textSize="15sp">
     </com.google.android.material.textfield.TextInputEditText>
     </com.google.android.material.textfield.TextInputLayout>
@@ -156,7 +165,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/ShopTypeSignUp"
             android:hint="Shop Type"
-            android:inputType="textPassword"
+            android:inputType="text"
             android:textSize="15sp">
         </com.google.android.material.textfield.TextInputEditText>
     </com.google.android.material.textfield.TextInputLayout>
