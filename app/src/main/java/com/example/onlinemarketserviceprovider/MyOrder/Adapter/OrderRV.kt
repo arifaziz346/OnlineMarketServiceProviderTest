@@ -1,16 +1,19 @@
 package com.example.onlinemarketserviceprovider.MyOrder.Adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.onlinemarketserviceprovider.MyOrder.Modal.Order
 import com.example.onlinemarketserviceprovider.R
 
 class OrderRV(context: Context,OrderList:ArrayList<Order>):RecyclerView.Adapter<OrderRV.viewHolder>() {
+
     var mContext:Context =context
     var OrderList:ArrayList<Order> =OrderList
 
@@ -18,22 +21,27 @@ class OrderRV(context: Context,OrderList:ArrayList<Order>):RecyclerView.Adapter<
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewHolder {
         var view = LayoutInflater.from(mContext).inflate(R.layout.items_my_product_order,parent,false)
+        Toast.makeText(mContext,"Inside:layoutInfliter",Toast.LENGTH_LONG).show()
     return viewHolder(view)
     }
 
     override fun onBindViewHolder(holder: viewHolder, position: Int) {
+
         var order = OrderList[position]
+
+
         holder.OrderNumber.text ="Order Number:"+ order.OrderNumber.toString()
-        holder.OrderDate.text ="Order Date:"+ order.OrderDate.toString()
-        holder.OrderBy.text ="Order By"+ order.OrderBy.toString()
-        holder.Phone.text ="Phone:"+order.Phone.toString()
-        holder.City.text= "City:"+order.City.toString()
-        holder.Address.text ="Address"+order.address.toString()
+        holder.OrderDate.text ="Order Date: "+ order.OrderDate.toString()
+        holder.OrderBy.text ="OrderBy: "+ order.OrderBy.toString()
+        holder.Phone.text ="Phone: "+order.Phone.toString()
+        holder.City.text= "City: "+order.City.toString()
+        holder.Address.text ="Address:"+order.Address.toString()
     }
 
     override fun getItemCount(): Int {
 
-    return OrderList.size}
+    return OrderList.size
+    }
 
     class viewHolder(view: View):RecyclerView.ViewHolder(view){
 

@@ -27,13 +27,21 @@ class register : AppCompatActivity() {
         setContentView(binding.root)
 
 
+        //use to move Login
+        binding.txtSignIn.setOnClickListener(View.OnClickListener {
+            val intent =Intent(this,login::class.java)
+            startActivity(intent)
+        })
+
+            //Btn use to SignUP
        binding.btnSignUp.setOnClickListener(View.OnClickListener {
            if (validation(binding)){
             registerShop(binding)
-               Toast.makeText(this,"Inside Button SignUp",Toast.LENGTH_LONG).show()
+
            }
        })
 
+        //Btn to select male or female
       binding.radioFemale.setOnClickListener(View.OnClickListener {
           Gender =0
       })
@@ -78,8 +86,8 @@ class register : AppCompatActivity() {
                         editor.putBoolean("register",true)
                         editor.commit()
 
-//                        val  intent = Intent(this, MainActivity::class.java)
-//                        startActivity(intent)
+                        val  intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
                     }
 
                         }catch(js:JSONException) {
