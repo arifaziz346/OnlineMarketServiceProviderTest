@@ -1,6 +1,5 @@
 package com.example.onlinemarketserviceprovider.MyOrder
 
-import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
@@ -13,17 +12,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Response
-import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.example.onlinemarketserviceprovider.Constant
+import com.example.onlinemarketserviceprovider.UrlConstant
 import com.example.onlinemarketserviceprovider.MyOrder.Adapter.OrderRV
 import com.example.onlinemarketserviceprovider.MyOrder.Modal.Order
 import com.example.onlinemarketserviceprovider.MyOrder.Modal.OrderItem
 import com.example.onlinemarketserviceprovider.R
 import org.json.JSONObject
-import java.lang.reflect.Method
-import kotlin.math.log
 
 
 class FragmentMyOrder : Fragment() {
@@ -42,17 +38,14 @@ private var adapter:OrderRV?=null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
 
-        //Get MyOrder from serve
+        //todo ------> Function get MyOrder from serve
         getMyOrderList()
 
         return inflater.inflate(R.layout.fragment_my_order, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-
-
-         orderReyclerView = view.findViewById<RecyclerView>(R.id.RV_MyOrder)
+        orderReyclerView = view.findViewById<RecyclerView>(R.id.RV_MyOrder)
         var layoutManager:RecyclerView.LayoutManager = LinearLayoutManager(context)
         orderReyclerView!!.layoutManager =layoutManager
         super.onViewCreated(view, savedInstanceState)
@@ -67,7 +60,7 @@ private var adapter:OrderRV?=null
 
         //Volley Request---------------------------------------------------->
         val myOrderRequest:StringRequest = object :StringRequest(
-            Method.GET,Constant.MyOrderProduct+shop_id,Response.Listener {
+            Method.GET,UrlConstant.MyOrderProduct+shop_id,Response.Listener {
                 try {
 
                     var jsonObject =JSONObject(it)
@@ -79,7 +72,7 @@ private var adapter:OrderRV?=null
 
                         for (i in 0 until OrderDetail.length()) {
                             var item = OrderDetail.getJSONObject(i)
-                            var productDetail =item.getJSONArray("ProductDetail")
+//                            var productDetail =item.getJSONArray("ProductDetail")
 
                               OrderNumber=item.optString("order_number").toInt()
                               OrderBy=item.optString("Orderby")
@@ -90,19 +83,19 @@ private var adapter:OrderRV?=null
                               PaymentType=item.optString("payment_type").toInt()
 
 
-                            for (i in 0 until productDetail.length()){
-                                val ProductDetail = productDetail.getJSONObject(i)
+//                            for (i in 0 until productDetail.length()){
+//                                val ProductDetail = productDetail.getJSONObject(i)
+////
+//                                OrderItems.add(
+//                                    OrderItem(ProductDetail.optString("ProductName"),
+//                                        ProductDetail.optString("quantity").toInt(),
+//                                        ProductDetail.optString("ProductPrice").toInt(),
+//                                        ProductDetail.optString("discount").toInt(),
+//                                        ProductDetail.optString("Color"),
+//                                        ProductDetail.optString("Size"),
+//                                        ProductDetail.optString("order_number").toInt()
 //
-                                OrderItems.add(
-                                    OrderItem(ProductDetail.optString("ProductName"),
-                                        ProductDetail.optString("quantity").toInt(),
-                                        ProductDetail.optString("ProductPrice").toInt(),
-                                        ProductDetail.optString("discount").toInt(),
-                                        ProductDetail.optString("Color"),
-                                        ProductDetail.optString("Size"),
-                                        ProductDetail.optString("order_number").toInt()
-
-                                    ))}
+//                                    ))}
                             OrderList.add(Order(OrderNumber!!,OrderBy!!,OrderDate!!,Phone!!,City!!,Address!!,PaymentType!!,OrderItems))
 
                         }

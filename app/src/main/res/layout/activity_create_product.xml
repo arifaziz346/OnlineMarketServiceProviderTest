@@ -159,8 +159,9 @@
                 android:textColorHint="@color/LightBlack"
                 ></EditText>
 
+
                 <EditText
-                    android:id="@+id/et_ProductPrice"
+                    android:id="@+id/et_ProductCostPrice"
                     android:layout_width="match_parent"
                     android:layout_height="39dp"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -169,10 +170,25 @@
                     android:layout_marginTop="5dp"
                     android:inputType="number"
                     android:paddingLeft="5dp"
-                    android:hint="Product Price"
+                    android:hint="Product Cost Price"
                     android:textColor="@color/LightBlack"
                     android:textColorHint="@color/LightBlack"
                     ></EditText>
+
+    <EditText
+        android:id="@+id/et_ProductSellPrice"
+        android:layout_width="match_parent"
+        android:layout_height="39dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_ProductCostPrice"
+        android:layout_marginTop="5dp"
+        android:inputType="number"
+        android:paddingLeft="5dp"
+        android:hint="Product Sell Price"
+        android:textColor="@color/LightBlack"
+        android:textColorHint="@color/LightBlack"
+        ></EditText>
 
                 <EditText
                             android:id="@+id/et_ProductSize"
@@ -180,7 +196,7 @@
                             android:layout_height="39dp"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintRight_toRightOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/et_ProductPrice"
+                            app:layout_constraintTop_toBottomOf="@+id/et_ProductSellPrice"
                             android:layout_marginTop="5dp"
                             android:inputType="number"
                             android:hint="Product Size"
@@ -218,6 +234,20 @@
                             android:textColorHint="@color/LightBlack"
                             ></EditText>
 
+    <EditText
+        android:id="@+id/et_ProductStock"
+        android:layout_width="match_parent"
+        android:layout_height="39dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_ProductColor"
+        android:layout_marginTop="5dp"
+        android:hint="Product Stock"
+        android:textColor="@color/LightBlack"
+        android:paddingLeft="5dp"
+        android:textColorHint="@color/LightBlack"
+        ></EditText>
+
                 <EditText
                             android:id="@+id/et_ProductDescription"
                             android:layout_width="match_parent"
@@ -225,7 +255,7 @@
                             android:gravity="start"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintRight_toRightOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/et_ProductColor"
+                            app:layout_constraintTop_toBottomOf="@+id/et_ProductStock"
                             android:layout_marginTop="5dp"
                             android:hint="Product Description"
                             android:textColor="@color/LightBlack"

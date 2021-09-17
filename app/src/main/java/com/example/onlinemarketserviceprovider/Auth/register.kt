@@ -6,17 +6,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.annotation.IntegerRes
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.example.onlinemarketserviceprovider.Constant
+import com.example.onlinemarketserviceprovider.UrlConstant
 import com.example.onlinemarketserviceprovider.MainActivity
 import com.example.onlinemarketserviceprovider.databinding.ActivityRegisterBinding
 import org.json.JSONException
 import org.json.JSONObject
-import java.lang.NumberFormatException
 
 class register : AppCompatActivity() {
      private var Gender:Int?=1
@@ -50,7 +48,7 @@ class register : AppCompatActivity() {
 
     //This function is use to get data from user and register in database using Volley
     private fun registerShop(binding: ActivityRegisterBinding) {
-        val shopRegisterUrl =Constant.RegisterShop
+        val shopRegisterUrl =UrlConstant.RegisterShop
         val queue = Volley.newRequestQueue(this)
 
         val joRegisterShop:JSONObject = JSONObject()

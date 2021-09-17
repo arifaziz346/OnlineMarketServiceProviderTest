@@ -7,14 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
-import com.android.volley.AuthFailureError
-import com.android.volley.Request
 import com.android.volley.Response
-import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.example.onlinemarketserviceprovider.Constant
+import com.example.onlinemarketserviceprovider.UrlConstant
 import com.example.onlinemarketserviceprovider.databinding.FragmentDashboardBinding
 import org.json.JSONException
 import org.json.JSONObject
@@ -47,7 +43,7 @@ class fragmentDashboard : Fragment() {
 //        Toast.makeText(requireContext(),"ID:" +id,Toast.LENGTH_SHORT).show()
         val myReq: StringRequest = object : StringRequest(
             Method.GET,
-            Constant.DashboardDetail+id,
+            UrlConstant.DashboardDetail+id,
             Response.Listener {
                 try {
                       var jODashboardDetail =JSONObject(it)

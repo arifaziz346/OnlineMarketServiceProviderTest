@@ -15,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OnlineMarketServiceProvider"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".MyOrder.OrderProductDetail"
+            android:exported="true" />
         <activity android:name=".Products.CreateProduct" />
         <activity android:name=".Shop.ShopInformation" />
         <activity android:name=".Auth.login" />
@@ -22,9 +25,7 @@
         <activity android:name=".Auth.register" />
         <activity
             android:name=".Start"
-            android:exported="true"
-            >
-
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

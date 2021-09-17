@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MyOrder.OrderProductDetail">
+    <ImageButton
+        android:id="@+id/btnBackOrderDetail"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_back_product_detail"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></ImageButton>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Order Product Detail"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/horizentalLine"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        ></TextView>
+
+    <View
+        android:id="@+id/horizentalLine"
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/black"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnBackOrderDetail"/>
+<!--    <TextView-->
+<!--        android:id="@+id/itemNameFixed"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:text="Iphone"-->
+<!--        android:textColor="@color/LightBlack"-->
+<!--        android:textSize="13sp"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/horizentalLine"></TextView>-->
+
+
+<!--    <TextView-->
+<!--        android:id="@+id/itemColorFixed"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="70dp"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:text="Color"-->
+<!--        android:textColor="@color/LightBlack"-->
+<!--        android:textSize="13sp"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintLeft_toRightOf="@id/itemNameFixed"-->
+<!--        app:layout_constraintTop_toTopOf="@id/horizentalLine"></TextView>-->
+<!--    <TextView-->
+<!--        android:id="@+id/itemSizeFixed"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="70dp"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:text="Size"-->
+<!--        android:textColor="@color/LightBlack"-->
+<!--        android:textSize="13sp"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintLeft_toRightOf="@id/itemColorFixed"-->
+<!--        app:layout_constraintTop_toTopOf="@id/horizentalLine"></TextView>-->
+<!--    <TextView-->
+<!--        android:id="@+id/itemDiscountFixed"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:layout_marginStart="20dp"-->
+<!--        android:text="Discount"-->
+<!--        android:textColor="@color/LightBlack"-->
+<!--        android:textSize="13sp"-->
+<!--        android:textStyle="bold"-->
+<!--       app:layout_constraintLeft_toRightOf="@id/itemSizeFixed"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/horizentalLine"-->
+<!--        ></TextView>-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/ItemPriceFixed"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:layout_marginStart="70dp"-->
+<!--        android:text="Price"-->
+<!--        android:textColor="@color/LightBlack"-->
+<!--        android:textSize="13sp"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintLeft_toRightOf="@id/itemSizeFixed"-->
+<!--        app:layout_constraintTop_toTopOf="@id/horizentalLine"></TextView>-->
+
+    <ListView
+        android:id="@+id/ListViewOrderDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="5dp"
+        android:padding="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/horizentalLine"
+        app:layout_constraintVertical_bias="0.0"></ListView>
+
+    <TextView
+        android:id="@+id/tv_totalPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="Total:3000"
+        app:layout_constraintTop_toBottomOf="@id/ListViewOrderDetail"
+        app:layout_constraintEnd_toEndOf="@id/ListViewOrderDetail"
+        app:layout_constraintLeft_toLeftOf="@id/ListViewOrderDetail"
+        android:layout_marginRight="25dp"
+        android:layout_marginLeft="5dp"
+        android:textStyle="bold"
+        android:textSize="13sp"></TextView>
+</androidx.constraintlayout.widget.ConstraintLayout>

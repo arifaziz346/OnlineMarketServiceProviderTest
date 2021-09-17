@@ -3,6 +3,7 @@ package com.example.onlinemarketserviceprovider.Products
 import android.app.Activity
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
@@ -10,32 +11,65 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
 import android.renderscript.ScriptGroup
+import android.util.Size
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
 import com.example.onlinemarketserviceprovider.R
+import com.example.onlinemarketserviceprovider.UrlConstant
 import com.example.onlinemarketserviceprovider.databinding.ActivityCreateProductBinding
 import com.github.dhaval2404.imagepicker.ImagePicker
 import kotlin.math.log
+import android.graphics.Bitmap
+import android.provider.MediaStore
+import android.util.Base64
+import org.json.JSONObject
+import java.io.ByteArrayOutputStream
+
 
 class CreateProduct : AppCompatActivity() {
-    var ImageOne:ImageView?=null
-    var ImageTwo:ImageView?=null
-    var ImageThree:ImageView?=null
-    var ImageFour:ImageView?=null
-    val REQUEST_CODE =1122
+    private var ImageOne:ImageView?=null
+    private var ImageTwo:ImageView?=null
+    private var ImageThree:ImageView?=null
+    private var ImageFour:ImageView?=null
+    private val REQUEST_CODE =1122
+    private var ImageStatus:String= ""
+    private var Name:String=""
+    private var CostPrice:String=""
+    private var SellPrice:String=""
+    private var Quantity:String=""
+    private var Color:String=""
+    private var Description:String=""
+    private var Size:String=""
+    private var Stock:String=""
+    private var bitmap:Bitmap? = null
+    private var imageConvertedString: String =""
+    private var shop_id:String=""
+    private var token:String=""
 
-    var ImageStatus:String= ""
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
-        var binding = ActivityCreateProductBinding.inflate(layoutInflater)
-        val view = binding.root
+         val binding = ActivityCreateProductBinding.inflate(layoutInflater)
+        val view = binding!!.root
         setContentView(view)
 
 
+
+
+
+
+
+
+        view.setOnClickListener(View.OnClickListener {
+            finish()
+        })
 
         //Intialization
          inti()
@@ -45,59 +79,138 @@ class CreateProduct : AppCompatActivity() {
 //        }
 
         //Buttons to upload image-------------------------------------------------------------->
-        binding.PhotoOne.setOnClickListener(View.OnClickListener {
+        binding!!.PhotoOne.setOnClickListener(View.OnClickListener {
             openGalleryCameraForImage()
             ImageStatus="PhotoOne"
         })
 
-        binding.PhotoTwo.setOnClickListener(View.OnClickListener {
+        binding!!.PhotoTwo.setOnClickListener(View.OnClickListener {
             openGalleryCameraForImage()
             ImageStatus="PhotoTwo"
         })
 
-        binding.PhotoThree.setOnClickListener(View.OnClickListener {
+        binding!!.PhotoThree.setOnClickListener(View.OnClickListener {
             openGalleryCameraForImage()
             ImageStatus="PhotoThree"
         })
 
-        binding.PhotoFour.setOnClickListener(View.OnClickListener {
+        binding!!.PhotoFour.setOnClickListener(View.OnClickListener {
         openGalleryCameraForImage()
             ImageStatus="PhotoFour"
         })
         //Button to remove image from ImageView------------------------------------------------>
-        binding.IBRemovePhotoOne.setOnClickListener(View.OnClickListener {
+        binding!!.IBRemovePhotoOne.setOnClickListener(View.OnClickListener {
             ImageOne!!.setImageDrawable(resources.getDrawable(R.drawable.image_upload_product));
         })
-        binding.IBRemovePhotoTwo.setOnClickListener(View.OnClickListener {
+        binding!!.IBRemovePhotoTwo.setOnClickListener(View.OnClickListener {
             ImageTwo!!.setImageDrawable(resources.getDrawable(R.drawable.image_upload_product));
         })
-        binding.IBRemovePhotoThree.setOnClickListener(View.OnClickListener {
+        binding!!.IBRemovePhotoThree.setOnClickListener(View.OnClickListener {
             ImageThree!!.setImageDrawable(resources.getDrawable(R.drawable.image_upload_product));
         })
-        binding.IBRemovePhotoFour.setOnClickListener(View.OnClickListener {
+        binding!!.IBRemovePhotoFour.setOnClickListener(View.OnClickListener {
             ImageFour!!.setImageDrawable(resources.getDrawable(R.drawable.image_upload_product));
         })
 
 
 
+   binding!!.btnSubmit.setOnClickListener(
+       View.OnClickListener {
 
+           Name=binding.etProductName.getText().toString()
+           CostPrice=binding.etProductCostPrice.getText().toString()
+           SellPrice=binding.etProductSellPrice.getText().toString()
+           Quantity=binding.etProductQuantity.getText().toString()
+           Color=binding.etProductColor.getText().toString()
+           Description=binding.etProductDescription.getText().toString()
+           Size=binding.etProductSize.getText().toString()
+           Stock=binding.etProductStock.getText().toString()
+
+           uploadData()
+   })
 
     }
 
-    private fun openGalleryCameraForImage(){
+    // converting image to base64 string
 
-        ImagePicker.with(this)
+    private fun convertingImageToBase64(){
+
+//converting image to base64 string
+
+    }
+    //todo --------------------------->inti
+    private fun inti() {
+        var sharedPreferences:SharedPreferences =getSharedPreferences("ShopDetail", MODE_PRIVATE)
+         token = sharedPreferences.getString("Token",null).toString()
+
+         shop_id =sharedPreferences.getString("ShopID",null).toString()
+        ImageOne =findViewById(R.id.PhotoOne)
+        ImageTwo =findViewById(R.id.PhotoTwo)
+        ImageThree =findViewById(R.id.PhotoThree)
+        ImageFour =findViewById(R.id.PhotoFour)
+    }
+
+    //todo --------------------------->Open Gallery or Camera
+    private fun openGalleryCameraForImage(){
+      ImagePicker.with(this)
             .crop()	    			//Crop image(Optional), Check Customization for more option
             .compress(1024)			//Final image size will be less than 1 MB(Optional)
             .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
             .start()
     }
 
-    private fun inti() {
-        ImageOne =findViewById(R.id.PhotoOne)
-        ImageTwo =findViewById(R.id.PhotoTwo)
-        ImageThree =findViewById(R.id.PhotoThree)
-        ImageFour =findViewById(R.id.PhotoFour)
+    //todo --------------------------->Upload image and data to serve
+    private fun uploadData(){
+        val baos = ByteArrayOutputStream()
+        bitmap!!.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        val imageBytes: ByteArray = baos.toByteArray()
+        imageConvertedString = Base64.encodeToString(imageBytes, Base64.DEFAULT)
+
+
+        //Volley
+        val queue=Volley.newRequestQueue(this)
+        val jsonObjectRequest:StringRequest =object:StringRequest(Method.POST,UrlConstant.CreateProduct,
+          Response.Listener {
+
+              try {
+                  var jsonObject =JSONObject(it)
+                  if(jsonObject.getBoolean("success")){
+                  Toast.makeText(this,"Success"+jsonObject.get("message"),Toast.LENGTH_LONG).show()
+                  }else{
+                      Toast.makeText(this,"error:"+jsonObject.getString("message"),Toast.LENGTH_LONG).show()
+                  }
+              }catch(e:Exception){
+                  Toast.makeText(this,"Json Error"+e.printStackTrace(),Toast.LENGTH_LONG).show()
+              }
+
+          },Response.ErrorListener {
+                Toast.makeText(this,"Volley Error"+it.printStackTrace(),Toast.LENGTH_LONG).show()
+        }){
+            override fun getHeaders(): MutableMap<String, String> {
+
+                val gh:HashMap<String,String> = HashMap()
+                gh["Authorization"]="Bearer "+token
+                return gh
+            }
+
+            override fun getParams(): MutableMap<String, String> {
+
+                val paras:HashMap<String,String> = HashMap()
+                    paras["Shop_id"]=shop_id.toString()
+                    paras["Name"]=Name
+                    paras["CostPrice"]=CostPrice
+                    paras["SellPrice"]=SellPrice
+                    paras["Quantity"]=Quantity
+                    paras["Color"]=Color
+                    paras["Description"]=Description
+                    paras["Size"]=Size
+                    paras["Stock"]=Stock
+                    paras["photo"]= imageConvertedString
+
+                return paras
+            }
+        }
+        queue.add(jsonObjectRequest)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -110,15 +223,20 @@ class CreateProduct : AppCompatActivity() {
             if(ImageStatus.equals("PhotoOne")){
                 Toast.makeText(this,"OnActivityResult",Toast.LENGTH_SHORT).show()
                 ImageOne!!.setImageURI(uri)
+
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                 ImageStatus= ""}
             else if(ImageStatus=="PhotoTwo"){
                 ImageTwo!!.setImageURI(uri)
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                 ImageStatus= ""}
             else if(ImageStatus=="PhotoThree"){
                 ImageThree!!.setImageURI(uri)
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                 ImageStatus= ""}
             else if(ImageStatus=="PhotoFour"){
                 ImageFour!!.setImageURI(uri)
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                 ImageStatus= ""}
 
 
@@ -129,15 +247,14 @@ class CreateProduct : AppCompatActivity() {
         }
     }
 
-
-    //Check is Permission Allowed
+    //todo -------------------------->Check is Permission Allowed
     fun isPermissionAllowed(): Boolean {
       return if (ContextCompat.checkSelfPermission(this,android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
           false
         } else true
     }
 
-    //Ask for Permissions
+    //todo -------------------------->Ask for Permissions
     fun askForPermissions(): Boolean {
         if (!isPermissionAllowed()) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(this as Activity,android.Manifest.permission.READ_EXTERNAL_STORAGE)){
@@ -165,8 +282,6 @@ class CreateProduct : AppCompatActivity() {
             }
         }
     }
-
-
 
     //ShowPermissionDeniedDialog
     private fun showPermissionDeniedDialog() {
