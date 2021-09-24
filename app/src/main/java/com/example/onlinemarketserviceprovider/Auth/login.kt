@@ -12,6 +12,7 @@ import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.android.volley.Response
+import com.example.onlinemarketserviceprovider.Helper.LoadingDialog
 import com.example.onlinemarketserviceprovider.UrlConstant
 import com.example.onlinemarketserviceprovider.Helper.Network
 import com.example.onlinemarketserviceprovider.MainActivity
@@ -28,6 +29,7 @@ class login : AppCompatActivity() {
     private   var emailLayout:TextInputLayout?=null
     private   var passwordLayout: TextInputLayout?=null
     private var btnSignIn:Button?=null
+    private  var loadingDialog: LoadingDialog = LoadingDialog()
 //    private var sharedPreferences:SharedPreferences?=null
 
 
@@ -68,15 +70,25 @@ class login : AppCompatActivity() {
             emailLayout!!.error ="Plz Enter Your Email"
             return false
         }
+        else if("@" !in txtEmail!!.getText().toString()){
+            emailLayout!!.error="Invalid Email!"
+            return false
+        }
+        else if("." !in txtEmail!!.getText().toString().substringAfter('@')){
+            emailLayout!!.error=".com is missing!"
+            return false}
+
         else if (txtPassword!!.getText().toString()==""){
             passwordLayout!!.error ="Plz Enter Your Password"
             return false
         }
 
+
     return true
     }
 
     private  fun logIn(email:String,password:String){
+        loadingDialog.startLoad(this)
       var requestQuee = Volley.newRequestQueue(this)
       var  joLogIn:JSONObject = JSONObject()
         joLogIn.put("email",email)
@@ -91,6 +103,7 @@ class login : AppCompatActivity() {
                try {
 
                   if(response.getBoolean("success")){
+                      loadingDialog.isDismiss()
                       val JSONObject = response.getJSONObject("Shops")
 //                      Toast.makeText(this,"WellCome: "+response.get("Shops"),Toast.LENGTH_SHORT).show()
 
@@ -112,6 +125,7 @@ class login : AppCompatActivity() {
                       startActivity(intent)
 
                   }else{
+                      loadingDialog.isDismiss()
                       Toast.makeText(this,"Sorry! your account has been blocked.",Toast.LENGTH_SHORT).show()
                   }
 
@@ -122,12 +136,14 @@ class login : AppCompatActivity() {
                }catch (e:JSONException ){
 //                   Toast.makeText(this,"Error: "+e.printStackTrace(),Toast.LENGTH_SHORT).show()
                    Toast.makeText(this,"Invalid Login!"+e.toString(),Toast.LENGTH_SHORT).show()
+                   loadingDialog.isDismiss()
                }
 
             },Response.ErrorListener { error ->
                 // TODO: Handle error
                 error.printStackTrace()
                 Toast.makeText(this,error.printStackTrace().toString(),Toast.LENGTH_SHORT).show()
+                loadingDialog.isDismiss()
             })
 
 

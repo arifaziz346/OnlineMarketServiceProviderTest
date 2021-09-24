@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<androidx.constraintlayout.widget.ConstraintLayout
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+<androidx.constraintlayout.widget.ConstraintLayout
+ android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Products.CreateProduct"
     android:padding="5dp">
@@ -42,6 +44,7 @@
     app:layout_constraintTop_toBottomOf="@id/TopCreateProduct"
     app:layout_constraintLeft_toLeftOf="parent"
     app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
     >
 
 
@@ -143,124 +146,186 @@
             app:layout_constraintTop_toTopOf="parent"></ImageButton>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtInputLayoutProductName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/constraingLayoutForPhotos"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        >
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_productName"
                 android:layout_width="match_parent"
-                android:layout_height="39dp"
-                app:layout_constraintTop_toBottomOf="@id/constraingLayoutForPhotos"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
+                android:layout_height="wrap_content"
                 android:paddingRight="5dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:hint="Product Name"
                 android:paddingLeft="5dp"
                 android:textColor="@color/LightBlack"
-                android:textColorHint="@color/LightBlack"
-                ></EditText>
+                android:textColorHint="@color/LightBlack">
 
+            </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
 
-                <EditText
+              <com.google.android.material.textfield.TextInputLayout
+                  android:id="@+id/txtInputLayoutProductCostPrice"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  app:layout_constraintLeft_toLeftOf="parent"
+                  app:layout_constraintRight_toRightOf="parent"
+                  app:layout_constraintTop_toBottomOf="@+id/txtInputLayoutProductName"
+                  style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_ProductCostPrice"
                     android:layout_width="match_parent"
-                    android:layout_height="39dp"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/et_productName"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:inputType="number"
                     android:paddingLeft="5dp"
-                    android:hint="Product Cost Price"
+                    android:hint="Cost Price"
                     android:textColor="@color/LightBlack"
                     android:textColorHint="@color/LightBlack"
-                    ></EditText>
+                    ></com.google.android.material.textfield.TextInputEditText>
+              </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtInputLayoutProductSellPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtInputLayoutProductCostPrice"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/et_ProductSellPrice"
         android:layout_width="match_parent"
-        android:layout_height="39dp"
+        android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_ProductCostPrice"
         android:layout_marginTop="5dp"
         android:inputType="number"
         android:paddingLeft="5dp"
-        android:hint="Product Sell Price"
+        android:hint="Sell Price"
         android:textColor="@color/LightBlack"
         android:textColorHint="@color/LightBlack"
-        ></EditText>
+        ></com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
 
-                <EditText
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txtInputLayoutProductSize"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintLeft_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtInputLayoutProductSellPrice"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+                <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/et_ProductSize"
                             android:layout_width="match_parent"
-                            android:layout_height="39dp"
-                            app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintRight_toRightOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/et_ProductSellPrice"
+                            android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:inputType="number"
-                            android:hint="Product Size"
+                            android:hint="Size"
                             android:paddingLeft="5dp"
                             android:textColor="@color/LightBlack"
                             android:textColorHint="@color/LightBlack"
-                            ></EditText>
+                            ></com.google.android.material.textfield.TextInputEditText>
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <EditText
-                            android:id="@+id/et_ProductQuantity"
-                            android:layout_width="match_parent"
-                            android:layout_height="39dp"
-                            app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintRight_toRightOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/et_ProductSize"
-                            android:layout_marginTop="5dp"
-                            android:inputType="number"
-                            android:hint="Product Quantity"
-                            android:textColor="@color/LightBlack"
-                            android:paddingLeft="5dp"
-                            android:textColorHint="@color/LightBlack"
-                            ></EditText>
-
-                <EditText
-                            android:id="@+id/et_ProductColor"
-                            android:layout_width="match_parent"
-                            android:layout_height="39dp"
-                            app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintRight_toRightOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/et_ProductQuantity"
-                            android:layout_marginTop="5dp"
-                            android:hint="Product Color"
-                            android:textColor="@color/LightBlack"
-                            android:paddingLeft="5dp"
-                            android:textColorHint="@color/LightBlack"
-                            ></EditText>
-
-    <EditText
-        android:id="@+id/et_ProductStock"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtInputLayoutProductQuantity"
         android:layout_width="match_parent"
-        android:layout_height="39dp"
+        android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_ProductColor"
-        android:layout_marginTop="5dp"
-        android:hint="Product Stock"
-        android:textColor="@color/LightBlack"
-        android:paddingLeft="5dp"
-        android:textColorHint="@color/LightBlack"
-        ></EditText>
-
-                <EditText
-                            android:id="@+id/et_ProductDescription"
+        app:layout_constraintTop_toBottomOf="@id/txtInputLayoutProductSize"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+                       <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_ProductQuantity"
                             android:layout_width="match_parent"
-                            android:layout_height="60dp"
-                            android:gravity="start"
-                            app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintRight_toRightOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/et_ProductStock"
+                            android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:hint="Product Description"
+                            android:inputType="number"
+                            android:hint="Quantity"
                             android:textColor="@color/LightBlack"
+                            android:paddingLeft="5dp"
                             android:textColorHint="@color/LightBlack"
-                            android:paddingLeft="5dp"></EditText>
+                            ></com.google.android.material.textfield.TextInputEditText>
+           </com.google.android.material.textfield.TextInputLayout>
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtInputLayoutProductColor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtInputLayoutProductQuantity"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_ProductColor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_ProductQuantity"
+            android:layout_marginTop="5dp"
+            android:hint="Color"
+            android:textColor="@color/LightBlack"
+            android:paddingLeft="5dp"
+            android:textColorHint="@color/LightBlack"
+            ></com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+<!--<com.google.android.material.textfield.TextInputLayout-->
+<!--    android:id="@+id/txtInputLayoutProductStock"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    app:layout_constraintLeft_toLeftOf="parent"-->
+<!--    app:layout_constraintRight_toRightOf="parent"-->
+<!--    app:layout_constraintTop_toBottomOf="@id/txtInputLayoutProductColor">-->
+<!--    <com.google.android.material.textfield.TextInputEditText-->
+<!--        android:id="@+id/et_ProductStock"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="39dp"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/et_ProductColor"-->
+<!--        android:layout_marginTop="5dp"-->
+<!--        android:hint="Product Stock"-->
+<!--        android:textColor="@color/LightBlack"-->
+<!--        android:paddingLeft="5dp"-->
+<!--        android:inputType="number"-->
+<!--        android:textColorHint="@color/LightBlack"-->
+<!--        ></com.google.android.material.textfield.TextInputEditText>-->
+
+<!--</com.google.android.material.textfield.TextInputLayout>-->
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtInputLayoutProductDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtInputLayoutProductColor"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_ProductDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:layout_marginTop="5dp"
+            android:hint="Description"
+            android:textColor="@color/LightBlack"
+            android:textColorHint="@color/LightBlack"
+            android:paddingLeft="5dp"></com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <Button
         android:id="@+id/btn_Cancel"
@@ -272,7 +337,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btn_Submit"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_ProductDescription"
+        app:layout_constraintTop_toBottomOf="@+id/txtInputLayoutProductDescription"
         app:layout_constraintVertical_bias="0.0"></Button>
 
     <Button
@@ -285,8 +350,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/btn_Cancel"
-        app:layout_constraintTop_toBottomOf="@id/et_ProductDescription"
+        app:layout_constraintTop_toBottomOf="@id/txtInputLayoutProductDescription"
         app:layout_constraintVertical_bias="0.0"></Button>
 </androidx.constraintlayout.widget.ConstraintLayout>
-
+</ScrollView>
 

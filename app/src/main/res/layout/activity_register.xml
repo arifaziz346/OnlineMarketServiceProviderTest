@@ -38,8 +38,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/txtLayoutShopNameSignUp"
         android:hint=""
-        android:layout_marginBottom="6dp"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
     <com.google.android.material.textfield.TextInputEditText
         android:layout_width="match_parent"
@@ -57,8 +56,7 @@
         android:id="@+id/txtLayoutEmailSignUp"
         android:hint=""
         app:endIconMode="clear_text"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_marginBottom="6dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
 
         >
 
@@ -81,8 +79,7 @@
         android:id="@+id/txtLayoutPasswordSignUp"
         android:hint=""
         app:endIconMode="password_toggle"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_marginBottom="6dp">
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
     <com.google.android.material.textfield.TextInputEditText
         android:layout_width="match_parent"
@@ -102,7 +99,7 @@
         app:counterEnabled="true"
         app:counterMaxLength="11"
         app:endIconMode="clear_text"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_marginBottom="6dp">
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -122,8 +119,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/txtLayoutCitySignUp"
         android:hint=""
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_marginBottom="6dp">
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
     <com.google.android.material.textfield.TextInputEditText
         android:layout_width="match_parent"
@@ -139,7 +135,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/txtLayoutAddressSignUp"
         android:hint=""
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_marginBottom="6dp">
 
     <com.google.android.material.textfield.TextInputEditText
@@ -157,8 +153,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/txtLayoutShopTypeSignUp"
         android:hint=""
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_marginBottom="6dp">
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -202,7 +197,6 @@
         android:background="@drawable/btn_round"
         android:textColor="@color/white"
         android:textSize="16dp"
-        android:layout_marginBottom="5dp"
         android:text="SIGN Up"
         android:onClick="signUp">
 

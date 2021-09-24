@@ -125,10 +125,9 @@
         android:textAlignment="center"
         android:text="Total:3000"
         app:layout_constraintTop_toBottomOf="@id/ListViewOrderDetail"
-        app:layout_constraintEnd_toEndOf="@id/ListViewOrderDetail"
-        app:layout_constraintLeft_toLeftOf="@id/ListViewOrderDetail"
+       app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         android:layout_marginRight="25dp"
         android:layout_marginLeft="5dp"
-        android:textStyle="bold"
         android:textSize="13sp"></TextView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,6 +10,7 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.example.onlinemarketserviceprovider.Helper.LoadingDialog
 import com.example.onlinemarketserviceprovider.UrlConstant
 import com.example.onlinemarketserviceprovider.MainActivity
 import com.example.onlinemarketserviceprovider.databinding.ActivityRegisterBinding
@@ -18,6 +19,7 @@ import org.json.JSONObject
 
 class register : AppCompatActivity() {
      private var Gender:Int?=1
+    private  var loadingDialog: LoadingDialog = LoadingDialog()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +50,7 @@ class register : AppCompatActivity() {
 
     //This function is use to get data from user and register in database using Volley
     private fun registerShop(binding: ActivityRegisterBinding) {
+        loadingDialog.startLoad(this)
         val shopRegisterUrl =UrlConstant.RegisterShop
         val queue = Volley.newRequestQueue(this)
 
@@ -68,6 +71,7 @@ class register : AppCompatActivity() {
 
 
                     if(response.getBoolean("success")){
+                        loadingDialog.isDismiss()
 //                        Toast.makeText(this,"Registerd successfullry:",Toast.LENGTH_LONG).show()
 //                        Toast.makeText(this,"token="+response.getString("token"),Toast.LENGTH_LONG).show()
                         val JSONObject = response.getJSONObject("Shops")
@@ -89,7 +93,7 @@ class register : AppCompatActivity() {
                     }
 
                         }catch(js:JSONException) {
-
+                        loadingDialog.isDismiss()
                         var error = response.getJSONObject("fail").getJSONArray("errorInfo")
                         val phoneNumber: String =
                             error[2].toString().substringAfter("'").substringBefore("'")
@@ -100,8 +104,11 @@ class register : AppCompatActivity() {
                         if ("@" !in phoneNumber) {
                             binding.txtLayoutShopPhoneSignUp.error =
                                 "This number is already registered!"
+                            loadingDialog.isDismiss()
                         } else {
+                            loadingDialog.isDismiss()
                             binding.txtLayoutEmailSignUp.error = "This email is already registered!"
+
                         }
 
 
@@ -113,6 +120,7 @@ class register : AppCompatActivity() {
             Response.ErrorListener { error ->
                 // TODO: Handle error
                 Toast.makeText(this,"Error:"+error.printStackTrace(),Toast.LENGTH_LONG).show()
+                loadingDialog.isDismiss()
             }
         )
 
@@ -134,7 +142,8 @@ class register : AppCompatActivity() {
        }
        else if("@" !in binding.EmailSignUp.getText().toString()){
            binding.txtLayoutEmailSignUp.error="Invalid Email!"
-           return false}
+           return false
+       }
        else if("." !in binding.EmailSignUp.getText().toString().substringAfter('@')){
            binding.txtLayoutEmailSignUp.error=".com is missing!"
            return false}

@@ -6,12 +6,9 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.net.Uri
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
-import android.renderscript.ScriptGroup
-import android.util.Size
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
@@ -25,10 +22,11 @@ import com.example.onlinemarketserviceprovider.R
 import com.example.onlinemarketserviceprovider.UrlConstant
 import com.example.onlinemarketserviceprovider.databinding.ActivityCreateProductBinding
 import com.github.dhaval2404.imagepicker.ImagePicker
-import kotlin.math.log
 import android.graphics.Bitmap
 import android.provider.MediaStore
 import android.util.Base64
+import androidx.annotation.NonNull
+import com.example.onlinemarketserviceprovider.Helper.LoadingDialog
 import org.json.JSONObject
 import java.io.ByteArrayOutputStream
 
@@ -52,6 +50,13 @@ class CreateProduct : AppCompatActivity() {
     private var imageConvertedString: String =""
     private var shop_id:String=""
     private var token:String=""
+    private var ImageOneConverted:String=""
+    private var ImageTwoConverted:String=""
+    private var ImageThreeConverted:String=""
+    private var ImageFourConverted:String=""
+    private var isImageEmpty:Boolean?=null
+    private  var loadingDialog:LoadingDialog=LoadingDialog()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -82,34 +87,46 @@ class CreateProduct : AppCompatActivity() {
         binding!!.PhotoOne.setOnClickListener(View.OnClickListener {
             openGalleryCameraForImage()
             ImageStatus="PhotoOne"
+            isImageEmpty=true
         })
 
         binding!!.PhotoTwo.setOnClickListener(View.OnClickListener {
             openGalleryCameraForImage()
             ImageStatus="PhotoTwo"
+            isImageEmpty=true
         })
 
         binding!!.PhotoThree.setOnClickListener(View.OnClickListener {
             openGalleryCameraForImage()
             ImageStatus="PhotoThree"
+            isImageEmpty=true
         })
 
         binding!!.PhotoFour.setOnClickListener(View.OnClickListener {
         openGalleryCameraForImage()
             ImageStatus="PhotoFour"
+            isImageEmpty=true
         })
         //Button to remove image from ImageView------------------------------------------------>
         binding!!.IBRemovePhotoOne.setOnClickListener(View.OnClickListener {
             ImageOne!!.setImageDrawable(resources.getDrawable(R.drawable.image_upload_product));
+            ImageOneConverted=""
+            isImageEmpty=false
         })
         binding!!.IBRemovePhotoTwo.setOnClickListener(View.OnClickListener {
             ImageTwo!!.setImageDrawable(resources.getDrawable(R.drawable.image_upload_product));
+            ImageTwoConverted=""
+            isImageEmpty=false
         })
         binding!!.IBRemovePhotoThree.setOnClickListener(View.OnClickListener {
             ImageThree!!.setImageDrawable(resources.getDrawable(R.drawable.image_upload_product));
+            ImageThreeConverted=""
+            isImageEmpty=false
         })
         binding!!.IBRemovePhotoFour.setOnClickListener(View.OnClickListener {
             ImageFour!!.setImageDrawable(resources.getDrawable(R.drawable.image_upload_product));
+            ImageFourConverted=""
+            isImageEmpty=false
         })
 
 
@@ -124,30 +141,39 @@ class CreateProduct : AppCompatActivity() {
            Color=binding.etProductColor.getText().toString()
            Description=binding.etProductDescription.getText().toString()
            Size=binding.etProductSize.getText().toString()
-           Stock=binding.etProductStock.getText().toString()
+//           Stock=binding.etProductStock.getText().toString()
 
-           uploadData()
+           if(validate(binding)){
+               uploadData()
+           }
+
    })
 
     }
 
     // converting image to base64 string
 
-    private fun convertingImageToBase64(){
+    private fun convertingImageToBase64(Image:Uri):String{
 
-//converting image to base64 string
-
-    }
+        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), Image);
+        val baos = ByteArrayOutputStream()
+        bitmap!!.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        val imageBytes: ByteArray = baos.toByteArray()
+        imageConvertedString = Base64.encodeToString(imageBytes, Base64.DEFAULT)
+        return imageConvertedString
+        }
     //todo --------------------------->inti
     private fun inti() {
         var sharedPreferences:SharedPreferences =getSharedPreferences("ShopDetail", MODE_PRIVATE)
          token = sharedPreferences.getString("Token",null).toString()
 
-         shop_id =sharedPreferences.getString("ShopID",null).toString()
+        shop_id =sharedPreferences.getString("ShopID",null).toString()
         ImageOne =findViewById(R.id.PhotoOne)
         ImageTwo =findViewById(R.id.PhotoTwo)
         ImageThree =findViewById(R.id.PhotoThree)
         ImageFour =findViewById(R.id.PhotoFour)
+          isImageEmpty=false
+
     }
 
     //todo --------------------------->Open Gallery or Camera
@@ -161,10 +187,7 @@ class CreateProduct : AppCompatActivity() {
 
     //todo --------------------------->Upload image and data to serve
     private fun uploadData(){
-        val baos = ByteArrayOutputStream()
-        bitmap!!.compress(Bitmap.CompressFormat.JPEG, 100, baos)
-        val imageBytes: ByteArray = baos.toByteArray()
-        imageConvertedString = Base64.encodeToString(imageBytes, Base64.DEFAULT)
+        loadingDialog.startLoad(this)
 
 
         //Volley
@@ -175,16 +198,25 @@ class CreateProduct : AppCompatActivity() {
               try {
                   var jsonObject =JSONObject(it)
                   if(jsonObject.getBoolean("success")){
+                      //Recall this Activity again(used for Refresh this activity)
+                      finish();
+                      startActivity(getIntent());
+
+                      loadingDialog.isDismiss()
                   Toast.makeText(this,"Success"+jsonObject.get("message"),Toast.LENGTH_LONG).show()
                   }else{
+                      loadingDialog.isDismiss()
                       Toast.makeText(this,"error:"+jsonObject.getString("message"),Toast.LENGTH_LONG).show()
                   }
               }catch(e:Exception){
+                  loadingDialog.isDismiss()
                   Toast.makeText(this,"Json Error"+e.printStackTrace(),Toast.LENGTH_LONG).show()
+                  loadingDialog.isDismiss()
               }
 
           },Response.ErrorListener {
                 Toast.makeText(this,"Volley Error"+it.printStackTrace(),Toast.LENGTH_LONG).show()
+                loadingDialog.isDismiss()
         }){
             override fun getHeaders(): MutableMap<String, String> {
 
@@ -204,8 +236,11 @@ class CreateProduct : AppCompatActivity() {
                     paras["Color"]=Color
                     paras["Description"]=Description
                     paras["Size"]=Size
-                    paras["Stock"]=Stock
-                    paras["photo"]= imageConvertedString
+//                    paras["Stock"]=Stock
+                    paras["photoOne"]= ImageOneConverted
+                    paras["photoTwo"]= ImageTwoConverted
+                    paras["photoThree"]= ImageThreeConverted
+                    paras["photoFour"]= ImageFourConverted
 
                 return paras
             }
@@ -223,20 +258,23 @@ class CreateProduct : AppCompatActivity() {
             if(ImageStatus.equals("PhotoOne")){
                 Toast.makeText(this,"OnActivityResult",Toast.LENGTH_SHORT).show()
                 ImageOne!!.setImageURI(uri)
-
-                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                ImageOneConverted = convertingImageToBase64(uri)
+                imageConvertedString=""
                 ImageStatus= ""}
             else if(ImageStatus=="PhotoTwo"){
                 ImageTwo!!.setImageURI(uri)
-                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                ImageTwoConverted = convertingImageToBase64(uri)
+                imageConvertedString=""
                 ImageStatus= ""}
             else if(ImageStatus=="PhotoThree"){
                 ImageThree!!.setImageURI(uri)
-                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                ImageThreeConverted = convertingImageToBase64(uri)
+                imageConvertedString=""
                 ImageStatus= ""}
             else if(ImageStatus=="PhotoFour"){
                 ImageFour!!.setImageURI(uri)
-                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                ImageFourConverted = convertingImageToBase64(uri)
+                imageConvertedString=""
                 ImageStatus= ""}
 
 
@@ -299,6 +337,40 @@ class CreateProduct : AppCompatActivity() {
                 })
             .setNegativeButton("Cancel",null)
             .show()
+    }
+
+    //todo -----------------------------------> Validation
+    private fun validate(binding:ActivityCreateProductBinding):Boolean{
+
+        if(isImageEmpty==false){
+                Toast.makeText(this,"Plz select at least One picture",Toast.LENGTH_LONG).show()
+
+                return false
+
+        }
+
+        if(binding.etProductName.getText().toString()==""){
+          binding.etProductName.error = "Plz Enter Product Name"
+        return false
+        }
+
+        if(binding.etProductSellPrice.getText().toString()==""){
+            binding.etProductSellPrice .error = "Plz Enter Price Of Product"
+        return false
+        }
+        if(binding.etProductCostPrice.getText().toString().toInt()>binding.etProductSellPrice.getText().toString().toInt()){
+            Toast.makeText(this,"Cost Price Can't be greater than Sell Price",Toast.LENGTH_LONG).show()
+            return false
+        }
+
+        if(binding.etProductQuantity.getText().toString()==""){
+            binding.etProductQuantity.error = "Plz Enter Product Quantity"
+        return false
+        }
+
+
+
+     return true
     }
 
 }
