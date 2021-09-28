@@ -135,7 +135,7 @@ class login : AppCompatActivity() {
 
                }catch (e:JSONException ){
 //                   Toast.makeText(this,"Error: "+e.printStackTrace(),Toast.LENGTH_SHORT).show()
-                   Toast.makeText(this,"Invalid Login!"+e.toString(),Toast.LENGTH_SHORT).show()
+                   Toast.makeText(this,"Invalid Login!Plz check your Email and password",Toast.LENGTH_SHORT).show()
                    loadingDialog.isDismiss()
                }
 

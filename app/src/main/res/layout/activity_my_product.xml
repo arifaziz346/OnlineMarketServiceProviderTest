@@ -5,13 +5,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Products.FragmentProduct">
+    tools:context=".Products.MyProduct">
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtLayoutProductSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etProductSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Search Product"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+
+            ></com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/products_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="4dp"
+        android:layout_below="@+id/txtLayoutProductSearch"
         android:layout_above="@id/btn_CreateProduct">
 
     </androidx.recyclerview.widget.RecyclerView>

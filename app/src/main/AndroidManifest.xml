@@ -16,6 +16,24 @@
         android:theme="@style/Theme.OnlineMarketServiceProvider"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Auth.UpdateProfile"
+            android:exported="true" />
+        <activity
+            android:name=".MyOrder.MyOrder"
+            android:exported="true" />
+        <activity
+            android:name=".Dashbord.SaleDashboard"
+            android:exported="true" />
+        <activity
+            android:name=".Products.MyProduct"
+            android:exported="true" />
+        <activity
+            android:name=".Products.Products"
+            android:exported="true" />
+        <activity
+            android:name=".Products.EditProduct"
+            android:exported="true" />
+        <activity
             android:name=".MyOrder.OrderProductDetail"
             android:exported="true" />
         <activity android:name=".Products.CreateProduct" />

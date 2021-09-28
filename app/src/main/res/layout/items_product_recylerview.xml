@@ -63,11 +63,11 @@
     </TextView>
 
     <TextView
-        android:id="@+id/product_color"
+        android:id="@+id/product_price"
         android:layout_marginTop="3dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Color">
+        android:text="SellPrice">
     </TextView>
     <TextView
         android:id="@+id/product_quantity"
@@ -84,11 +84,11 @@
         android:text="Size">
     </TextView>
         <TextView
-            android:id="@+id/product_price"
+            android:id="@+id/product_color"
             android:layout_marginTop="3dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Price">
+            android:text="Color">
         </TextView>
         <TextView
             android:id="@+id/product_description"

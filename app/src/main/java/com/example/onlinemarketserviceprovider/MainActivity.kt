@@ -1,34 +1,67 @@
 package com.example.onlinemarketserviceprovider
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
-import androidx.viewpager.widget.ViewPager
-import com.example.onlinemarketserviceprovider.Adapter.myViewPagerAdapter
-import com.example.onlinemarketserviceprovider.Dashbord.fragmentDashboard
-import com.example.onlinemarketserviceprovider.MyOrder.FragmentMyOrder
-import com.example.onlinemarketserviceprovider.Products.FragmentProduct
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.navigation.NavigationBarView
-import com.google.android.material.tabs.TabLayout
+import android.view.View
+import com.example.onlinemarketserviceprovider.Auth.UpdateProfile
+import com.example.onlinemarketserviceprovider.Auth.login
+import com.example.onlinemarketserviceprovider.Dashbord.SaleDashboard
+import com.example.onlinemarketserviceprovider.MyOrder.MyOrder
+import com.example.onlinemarketserviceprovider.Products.MyProduct
+import com.example.onlinemarketserviceprovider.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        var binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
 
 
-    var  adapter = myViewPagerAdapter(supportFragmentManager)
-         adapter.addFragment(fragmentDashboard(),"Dashboard")
-         adapter.addFragment(FragmentMyOrder(),"MyOrder")
-         adapter.addFragment(FragmentProduct(),"Product")
+        //Sale Dashboard
+        binding.cvSaleDashboard.setOnClickListener(
+            View.OnClickListener {
+                val intent = Intent(this,SaleDashboard::class.java)
+                startActivity(intent)
+            })
 
-        var tabLayout = findViewById<TabLayout>(R.id.tabLayout)
-        var viewPager = findViewById<ViewPager>(R.id.viewPager)
+        binding.cvMyProduct.setOnClickListener(
+            View.OnClickListener {
+            val intent = Intent(this,MyProduct::class.java)
+                startActivity(intent)
+            })
+        binding.cvOrder.setOnClickListener(
+            View.OnClickListener {
+                val intent = Intent(this,MyOrder::class.java)
+                startActivity(intent)
 
-        viewPager.adapter = adapter
-        tabLayout.setupWithViewPager(viewPager)
+            })
+        binding.cvUpdateProfile.setOnClickListener(
+            View.OnClickListener {
+                val intent = Intent(this,UpdateProfile::class.java)
+                startActivity(intent)
+                finish()
+            })
+
+        binding.cvLogOut.setOnClickListener(
+            View.OnClickListener {
+                val intent = Intent(this,login::class.java)
+                startActivity(intent)
+                finish()
+            })
+
+//    var  adapter = myViewPagerAdapter(supportFragmentManager)
+//         adapter.addFragment(fragmentDashboard(),"Dashboard")
+//         adapter.addFragment(FragmentMyOrder(),"MyOrder")
+//         adapter.addFragment(FragmentProduct(),"Product")
+//
+//        var tabLayout = findViewById<TabLayout>(R.id.tabLayout)
+//        var viewPager = findViewById<ViewPager>(R.id.viewPager)
+//
+//        viewPager.adapter = adapter
+//        tabLayout.setupWithViewPager(viewPager)
 
     }
 

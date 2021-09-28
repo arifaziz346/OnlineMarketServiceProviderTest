@@ -5,12 +5,18 @@ public class UrlConstant {
         val  URL:String ="http://192.168.43.193:8080/"
         val  RegisterShop:String =URL+"api/RegisterShop"
         val  LoginShop:String =URL+"api/loginShop"
+        val  GetProduct:String = URL+"api/GetProduct?shop_id="
         val DashboardDetail:String=URL+"api/DashboardDetail?shop_id="
         val MyOrderProduct:String=URL+"api/MyOrderProduct?shop_id="
         val CancelOrder:String=URL+"api/CancelOrder"
         val TransferOrder:String=URL+"api/TransferOrder"
         val OderProductDetail:String=URL+"api/OderProductDetail"
         val CreateProduct:String=URL+"api/CreateProduct"
+        val DeleteProduct:String=URL+"api/DeleteProduct"
+        val EditProduct:String=URL+"api/EditProduct"
+        val SearchMyProduct:String=URL+"api/SearchMyProduct"
+        val GetShopDetail:String=URL+"api/GetShopDetail?shop_id="
+        val UpdateProfile:String=URL+"api/UpdateProfile"
     }
 }
 

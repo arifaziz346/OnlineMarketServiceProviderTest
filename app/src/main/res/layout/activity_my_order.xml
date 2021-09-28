@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MyOrder.MyOrder">
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnBackMyOrder"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/btn_back_create_product"
+            ></androidx.appcompat.widget.AppCompatButton>
+
+        <TextView
+            android:id="@+id/TopCreateProduct"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:text="My Orders"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:textStyle="bold"></TextView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/RV_MyOrder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/TopCreateProduct">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+
+</RelativeLayout>

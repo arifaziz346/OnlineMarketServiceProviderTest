@@ -45,7 +45,7 @@ class CreateProduct : AppCompatActivity() {
     private var Color:String=""
     private var Description:String=""
     private var Size:String=""
-    private var Stock:String=""
+    private var Discount:String=""
     private var bitmap:Bitmap? = null
     private var imageConvertedString: String =""
     private var shop_id:String=""
@@ -70,10 +70,15 @@ class CreateProduct : AppCompatActivity() {
 
 
 
-
-
-        view.setOnClickListener(View.OnClickListener {
+        binding.btnBack.setOnClickListener(View.OnClickListener {
             finish()
+        })
+
+
+        binding.btnCancel.setOnClickListener(View.OnClickListener {
+//            finish()
+            val intent =Intent(this,MyProduct::class.java)
+            startActivity(intent)
         })
 
         //Intialization
@@ -87,7 +92,7 @@ class CreateProduct : AppCompatActivity() {
         binding!!.PhotoOne.setOnClickListener(View.OnClickListener {
             openGalleryCameraForImage()
             ImageStatus="PhotoOne"
-            isImageEmpty=true
+
         })
 
         binding!!.PhotoTwo.setOnClickListener(View.OnClickListener {
@@ -99,34 +104,36 @@ class CreateProduct : AppCompatActivity() {
         binding!!.PhotoThree.setOnClickListener(View.OnClickListener {
             openGalleryCameraForImage()
             ImageStatus="PhotoThree"
-            isImageEmpty=true
+
         })
 
         binding!!.PhotoFour.setOnClickListener(View.OnClickListener {
         openGalleryCameraForImage()
             ImageStatus="PhotoFour"
-            isImageEmpty=true
+
         })
         //Button to remove image from ImageView------------------------------------------------>
         binding!!.IBRemovePhotoOne.setOnClickListener(View.OnClickListener {
-            ImageOne!!.setImageDrawable(resources.getDrawable(R.drawable.image_upload_product));
+
             ImageOneConverted=""
-            isImageEmpty=false
+            ImageOne!!.setImageResource(0)
+
         })
         binding!!.IBRemovePhotoTwo.setOnClickListener(View.OnClickListener {
-            ImageTwo!!.setImageDrawable(resources.getDrawable(R.drawable.image_upload_product));
+
             ImageTwoConverted=""
-            isImageEmpty=false
+            ImageTwo!!.setImageResource(0)
+
         })
         binding!!.IBRemovePhotoThree.setOnClickListener(View.OnClickListener {
-            ImageThree!!.setImageDrawable(resources.getDrawable(R.drawable.image_upload_product));
+
             ImageThreeConverted=""
-            isImageEmpty=false
+            ImageThree!!.setImageResource(0)
         })
         binding!!.IBRemovePhotoFour.setOnClickListener(View.OnClickListener {
-            ImageFour!!.setImageDrawable(resources.getDrawable(R.drawable.image_upload_product));
+
             ImageFourConverted=""
-            isImageEmpty=false
+            ImageFour!!.setImageResource(0)
         })
 
 
@@ -141,7 +148,7 @@ class CreateProduct : AppCompatActivity() {
            Color=binding.etProductColor.getText().toString()
            Description=binding.etProductDescription.getText().toString()
            Size=binding.etProductSize.getText().toString()
-//           Stock=binding.etProductStock.getText().toString()
+           Discount=binding.etProductDiscount.getText().toString()
 
            if(validate(binding)){
                uploadData()
@@ -151,9 +158,8 @@ class CreateProduct : AppCompatActivity() {
 
     }
 
-    // converting image to base64 string
-
-    private fun convertingImageToBase64(Image:Uri):String{
+    //todo converting image to base64 string
+     private fun convertingImageToBase64(Image:Uri):String{
 
         bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), Image);
         val baos = ByteArrayOutputStream()
@@ -172,6 +178,12 @@ class CreateProduct : AppCompatActivity() {
         ImageTwo =findViewById(R.id.PhotoTwo)
         ImageThree =findViewById(R.id.PhotoThree)
         ImageFour =findViewById(R.id.PhotoFour)
+
+        //it is used to check image.drawable is equal to null
+        ImageOne!!.setImageResource(0)
+        ImageTwo!!.setImageResource(0)
+        ImageThree!!.setImageResource(0)
+        ImageFour!!.setImageResource(0)
           isImageEmpty=false
 
     }
@@ -236,7 +248,7 @@ class CreateProduct : AppCompatActivity() {
                     paras["Color"]=Color
                     paras["Description"]=Description
                     paras["Size"]=Size
-//                    paras["Stock"]=Stock
+                    paras["Discount"]=Discount
                     paras["photoOne"]= ImageOneConverted
                     paras["photoTwo"]= ImageTwoConverted
                     paras["photoThree"]= ImageThreeConverted
@@ -293,60 +305,59 @@ class CreateProduct : AppCompatActivity() {
     }
 
     //todo -------------------------->Ask for Permissions
-    fun askForPermissions(): Boolean {
-        if (!isPermissionAllowed()) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this as Activity,android.Manifest.permission.READ_EXTERNAL_STORAGE)){
-             showPermissionDeniedDialog()
-            } else {
-                ActivityCompat.requestPermissions(this as Activity,arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),REQUEST_CODE)
-            }
-            return true
-        }
-        return false
-    }
-
-
-    override fun onRequestPermissionsResult(requestCode: Int,permissions: Array<String>,grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when (requestCode) {
-            REQUEST_CODE -> {
-                if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // permission is granted, you can perform your operation here
-                } else {
-                    // permission is denied, you can ask for permission again, if you want
-                    //  askForPermissions()
-                }
-                return
-            }
-        }
-    }
-
-    //ShowPermissionDeniedDialog
-    private fun showPermissionDeniedDialog() {
-        AlertDialog.Builder(this)
-            .setTitle("Permission Denied")
-            .setMessage("Permission is denied, Please allow permissions from App Settings.")
-            .setPositiveButton("App Settings",
-                DialogInterface.OnClickListener { dialogInterface, i ->
-                    // send to app settings if permission is denied permanently
-                    val intent = Intent()
-                    intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
-                    val uri = Uri.fromParts("package", getPackageName(), null)
-                    intent.data = uri
-                    startActivity(intent)
-                })
-            .setNegativeButton("Cancel",null)
-            .show()
-    }
+//    fun askForPermissions(): Boolean {
+//        if (!isPermissionAllowed()) {
+//            if (ActivityCompat.shouldShowRequestPermissionRationale(this as Activity,android.Manifest.permission.READ_EXTERNAL_STORAGE)){
+//             showPermissionDeniedDialog()
+//            } else {
+//                ActivityCompat.requestPermissions(this as Activity,arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),REQUEST_CODE)
+//            }
+//            return true
+//        }
+//        return false
+//    }
+//
+//
+//    override fun onRequestPermissionsResult(requestCode: Int,permissions: Array<String>,grantResults: IntArray) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+//        when (requestCode) {
+//            REQUEST_CODE -> {
+//                if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                    // permission is granted, you can perform your operation here
+//                } else {
+//                    // permission is denied, you can ask for permission again, if you want
+//                    //  askForPermissions()
+//                }
+//                return
+//            }
+//        }
+//    }
+//
+//    //ShowPermissionDeniedDialog
+//    private fun showPermissionDeniedDialog() {
+//        AlertDialog.Builder(this)
+//            .setTitle("Permission Denied")
+//            .setMessage("Permission is denied, Please allow permissions from App Settings.")
+//            .setPositiveButton("App Settings",
+//                DialogInterface.OnClickListener { dialogInterface, i ->
+//                    // send to app settings if permission is denied permanently
+//                    val intent = Intent()
+//                    intent.action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
+//                    val uri = Uri.fromParts("package", getPackageName(), null)
+//                    intent.data = uri
+//                    startActivity(intent)
+//                })
+//            .setNegativeButton("Cancel",null)
+//            .show()
+//    }
 
     //todo -----------------------------------> Validation
     private fun validate(binding:ActivityCreateProductBinding):Boolean{
 
-        if(isImageEmpty==false){
-                Toast.makeText(this,"Plz select at least One picture",Toast.LENGTH_LONG).show()
+        if(ImageOne!!.drawable==null || ImageTwo!!.drawable==null || ImageThree!!.drawable==null || ImageFour!!.drawable==null){
+                Toast.makeText(this,"Plz select at least 4 picture",Toast.LENGTH_LONG).show()
 
                 return false
-
         }
 
         if(binding.etProductName.getText().toString()==""){
@@ -368,7 +379,10 @@ class CreateProduct : AppCompatActivity() {
         return false
         }
 
-
+        if(binding.etProductDiscount.getText().toString().toInt()>binding.etProductSellPrice.getText().toString().toInt()){
+            Toast.makeText(this,"Discount Can't be greater than Sell Price",Toast.LENGTH_LONG).show()
+            return false
+        }
 
      return true
     }
