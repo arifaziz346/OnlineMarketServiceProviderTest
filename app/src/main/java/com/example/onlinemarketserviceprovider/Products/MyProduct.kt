@@ -22,6 +22,10 @@ import org.json.JSONObject
 
 import android.text.Editable
 import androidx.annotation.NonNull
+import com.example.onlinemarketserviceprovider.MainActivity
+import com.example.onlinemarketserviceprovider.R
+import com.squareup.picasso.Picasso
+import java.lang.System.load
 
 
 class MyProduct : AppCompatActivity() {
@@ -40,7 +44,7 @@ class MyProduct : AppCompatActivity() {
 
 
         getProducts(binding)
-
+//        loadingDialog.startLoad(this)
 
         //Search Product
         binding.etProductSearch.addTextChangedListener(object : TextWatcher {
@@ -54,20 +58,24 @@ class MyProduct : AppCompatActivity() {
         //This button is used to create products
         var btnCreateProduct =binding.btnCreateProduct
         btnCreateProduct.setOnClickListener(View.OnClickListener {
+           Picasso.get().load(R.drawable.add_product_icon_blue)
             val intent = Intent(this,CreateProduct::class.java)
             startActivity(intent)
         })
 
-//        ProductRVAdapter = binding.productsRecyclerView
-//        var layoutManager:RecyclerView.LayoutManager = LinearLayoutManager(this)
-//        ProductRVAdapter!!.layoutManager = layoutManager
-//
-//        adapter = ProductRVAdapter(this,ProductList)
-//        ProductRVAdapter!!.adapter = adapter
+        binding.btnBackMyOrder.setOnClickListener(View.OnClickListener {
+            finish()
+            val intent = Intent(this,MainActivity::class.java)
+            startActivity(intent)
+
+        })
+
+
     }
 
     //todo -----------------------Used to Search Product
     private fun performSearch(searchProduct: String, binding: ActivityMyProductBinding) {
+
       val shop_id =sharedPreferance.getString("ShopID",null)
               val queue = Volley.newRequestQueue(this)
               val joGetProductRequest: StringRequest = object: StringRequest(Method.POST,UrlConstant.SearchMyProduct ,
@@ -79,6 +87,7 @@ class MyProduct : AppCompatActivity() {
                           ProductList.clear()
 
                           if(jsonObject.getBoolean("success")){
+
                               loadingDialog.isDismiss()
 
                               for(i in 0 until products.length()){
@@ -91,8 +100,8 @@ class MyProduct : AppCompatActivity() {
 
 
                                   }
-                                  Toast.makeText(this,"Discount:"+items.optInt("Discount"),Toast.LENGTH_SHORT).show()
-                                  Log.d("Discount",items.optInt("Discount").toString())
+
+//                                  Log.d("Discount",items.optInt("Discount").toString())
                                   ProductList.add(Product(
                                       items.optInt("product_id"),
                                       items.optInt("shop_id"),
@@ -116,10 +125,11 @@ class MyProduct : AppCompatActivity() {
                               adapter = ProductRVAdapter(this,ProductList)
                               ProductRVAdapter!!.adapter = adapter
 
-
+                              loadingDialog.isDismiss()
                           }else{
                               loadingDialog.isDismiss()
                               Toast.makeText(this,"Fail"+jsonObject, Toast.LENGTH_LONG).show()
+                              loadingDialog.isDismiss()
                           }
 
                       }catch(e:Exception){
@@ -128,6 +138,7 @@ class MyProduct : AppCompatActivity() {
                       }
 
                   }, Response.ErrorListener {
+                      loadingDialog.isDismiss()
                       Toast.makeText(this,"Vollery Error:"+it.printStackTrace(), Toast.LENGTH_LONG).show()
 
                   }){
@@ -170,7 +181,7 @@ class MyProduct : AppCompatActivity() {
                     ProductList.clear()
 
                     if(jsonObject.getBoolean("success")){
-                        loadingDialog.isDismiss()
+
 
                         for(i in 0 until products.length()){
                             var items =products.getJSONObject(i)
@@ -182,8 +193,8 @@ class MyProduct : AppCompatActivity() {
 
 
                             }
-                                          Toast.makeText(this,"Discount:"+items.optInt("Discount"),Toast.LENGTH_SHORT).show()
-                            Log.d("Discount",items.optInt("Discount").toString())
+
+//                            Log.d("Discount",items.optInt("Discount").toString())
                             ProductList.add(Product(
                                 items.optInt("product_id"),
                                 items.optInt("shop_id"),
@@ -206,7 +217,7 @@ class MyProduct : AppCompatActivity() {
 
                         adapter = ProductRVAdapter(this,ProductList)
                         ProductRVAdapter!!.adapter = adapter
-
+                        loadingDialog.isDismiss()
 
                     }else{
                         loadingDialog.isDismiss()
@@ -233,5 +244,12 @@ class MyProduct : AppCompatActivity() {
 
 
         queue.add(joGetProductRequest)
+    }
+
+    override fun onBackPressed() {
+        finish()
+       val  intent=Intent(this,MainActivity::class.java)
+       startActivity(intent)
+
     }
 }

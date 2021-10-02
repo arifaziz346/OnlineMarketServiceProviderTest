@@ -15,39 +15,39 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.onlinemarketserviceprovider.Helper.LoadingDialog
 import com.example.onlinemarketserviceprovider.MainActivity
-import com.example.onlinemarketserviceprovider.MyOrder.Adapter.OrderRV
+import com.example.onlinemarketserviceprovider.MyOrder.Adapter.TransferredOrderRV
 import com.example.onlinemarketserviceprovider.MyOrder.Modal.Order
 import com.example.onlinemarketserviceprovider.MyOrder.Modal.OrderItem
 import com.example.onlinemarketserviceprovider.R
 import com.example.onlinemarketserviceprovider.UrlConstant
 import org.json.JSONObject
 
-class MyOrder : AppCompatActivity() {
+class TransferredOrderDetail : AppCompatActivity() {
     private var OrderList = ArrayList<Order>()
     private var OrderItems = ArrayList<OrderItem>()
     private var OrderNumber: Int? = null
     private var OrderBy: String? = null
     private var OrderDate: String? = null
-    private var TransferredDate:String?=null
     private var Phone: String? = null
     private var City: String? = null
+    private var TransferredDate:String?=null
     private var Address: String? = null
     private var PaymentType: Int? = null
     private var sharedPreferences: SharedPreferences? = null
     private var orderReyclerView: RecyclerView? = null
-    private var adapter: OrderRV? = null
-    private var btnBack:AppCompatButton?=null
-    private var LoadingDialog:LoadingDialog= LoadingDialog()
+    private var adapter: TransferredOrderRV? = null
+    private var btnBack: AppCompatButton?=null
+    private var LoadingDialog: LoadingDialog = LoadingDialog()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_my_order)
+        setContentView(R.layout.activity_transferred_order)
 
         //init
         btnBack=findViewById(R.id.btnBackMyOrder)
 
         btnBack!!.setOnClickListener(View.OnClickListener {
 
-            val intent =Intent(this,MainActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
         })
@@ -70,7 +70,7 @@ class MyOrder : AppCompatActivity() {
 
         //Volley Request---------------------------------------------------->
         val myOrderRequest: StringRequest = object : StringRequest(
-            Method.GET, UrlConstant.MyOrderProduct + shop_id, Response.Listener {
+            Method.GET, UrlConstant.GetTransferredOrder + shop_id, Response.Listener {
                 try {
 
                     var jsonObject = JSONObject(it)
@@ -78,6 +78,7 @@ class MyOrder : AppCompatActivity() {
 
                         val OrderDetail = jsonObject.getJSONArray("OrderDetail")
                         OrderItems.clear()
+                        OrderList.clear()
 
                         for (i in 0 until OrderDetail.length()) {
                             var item = OrderDetail.getJSONObject(i)
@@ -91,7 +92,6 @@ class MyOrder : AppCompatActivity() {
                             Address = item.optString("address")
                             PaymentType = item.optString("payment_type").toInt()
                             TransferredDate=item.optString("OrderTransferredDate")
-
 
 //                            for (i in 0 until productDetail.length()){
 //                                val ProductDetail = productDetail.getJSONObject(i)
@@ -122,7 +122,7 @@ class MyOrder : AppCompatActivity() {
 
                         }
 
-                        adapter = OrderRV(this, OrderList)
+                        adapter = TransferredOrderRV(this, OrderList)
                         orderReyclerView!!.adapter = adapter
                         LoadingDialog.isDismiss()
                     } else {

@@ -26,6 +26,7 @@ import androidx.core.content.ContextCompat
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.example.onlinemarketserviceprovider.Helper.LoadingDialog
 import com.example.onlinemarketserviceprovider.R
 import com.example.onlinemarketserviceprovider.UrlConstant
 import com.github.dhaval2404.imagepicker.ImagePicker
@@ -78,6 +79,7 @@ class EditProduct : AppCompatActivity() {
     private var ImageTwoConverted=""
     private var ImageThreeConverted=""
     private var ImageFourConverted=""
+    private var loadingDialog =LoadingDialog()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding=ActivityEditProductBinding.inflate(layoutInflater)
@@ -85,7 +87,6 @@ class EditProduct : AppCompatActivity() {
 
         /**----------------todo Initialize Value**/
         inti(binding)
-
         //Btn used to cancel
         binding.btnCancel.setOnClickListener(
             View.OnClickListener {
@@ -239,19 +240,39 @@ class EditProduct : AppCompatActivity() {
             binding.etProductSellPrice .error = "Plz Enter Price Of Product"
             return false
         }
-        if(binding.etProductCostPrice.getText().toString().toInt()>binding.etProductSellPrice.getText().toString().toInt()){
-            Toast.makeText(this,"Cost Price Can't be greater than Sell Price",Toast.LENGTH_LONG).show()
+        if(binding.etProductCostPrice.getText().toString()==""){
+            binding.etProductCostPrice .error = "Plz Enter Price Of Product"
             return false
         }
+
+        //Need More Validation
+        try {
+            if(binding.etProductCostPrice.getText().toString().toInt()>binding.etProductSellPrice.getText().toString().toInt()){
+                Toast.makeText(this,"Cost Price Can't be greater than Sell Price",Toast.LENGTH_LONG).show()
+                return false
+            }
+        }catch (e:java.lang.Exception){
+            if(binding.etProductCostPrice.getText().toString()==""){
+                binding.etProductCostPrice.setText(null)
+            }
+        }
+
 
         if(binding.etProductQuantity.getText().toString()==""){
             binding.etProductQuantity.error = "Plz Enter Product Quantity"
             return false
         }
+        //Need More Validation
+         try {
+             if(binding.etProductDiscount.getText().toString().toInt()>binding.etProductSellPrice.getText().toString().toInt()){
+                 Toast.makeText(this,"Cost Price Can't be greater than Sell Price",Toast.LENGTH_LONG).show()
+                 return false
+         }
 
-        if(binding.etProductDiscount.getText().toString().toInt()>binding.etProductSellPrice.getText().toString().toInt()){
-            Toast.makeText(this,"Cost Price Can't be greater than Sell Price",Toast.LENGTH_LONG).show()
-            return false
+        }catch (e:Exception){
+      if(binding.etProductDiscount.getText().toString()==""){
+                 binding.etProductDiscount.setText(null)
+             }
         }
 
         return true
@@ -302,26 +323,31 @@ class EditProduct : AppCompatActivity() {
 
    //todo ----------------------------------->EditProduct to server side---------
     private fun editProduct(binding:ActivityEditProductBinding) {
+       loadingDialog.startLoad(this)
         val queue=Volley.newRequestQueue(this)
         var editJORequest:StringRequest = object:StringRequest(Method.POST,UrlConstant.EditProduct,
             Response.Listener {
                 try {
                     var JSONObject = JSONObject(it)
                     if(JSONObject.getBoolean("success")){
+                        loadingDialog.isDismiss()
                         Toast.makeText(this,JSONObject.getString("message"),Toast.LENGTH_SHORT).show()
                         finish()
                        val intent =Intent(this,MyProduct::class.java)
                         startActivity(intent)
                     }else{
+                        loadingDialog.isDismiss()
                         Toast.makeText(this,"Fail:"+JSONObject.getString("message"),Toast.LENGTH_SHORT).show()
                     }
                 }
                 catch (e:JSONException){
+                    loadingDialog.isDismiss()
                     Toast.makeText(this,"JsonException Fail:"+e.printStackTrace(),Toast.LENGTH_SHORT).show()
                 }
 
         },Response.ErrorListener {
                 Toast.makeText(this,"Volley Error:"+it,Toast.LENGTH_SHORT).show()
+                loadingDialog.isDismiss()
         }){
             val token =sharedPreferences.getString("Token",null)
             override fun getHeaders(): MutableMap<String, String> {

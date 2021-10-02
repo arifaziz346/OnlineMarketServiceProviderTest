@@ -16,6 +16,9 @@
         android:theme="@style/Theme.OnlineMarketServiceProvider"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".MyOrder.TransferredOrderDetail"
+            android:exported="true" />
+        <activity
             android:name=".Auth.UpdateProfile"
             android:exported="true" />
         <activity

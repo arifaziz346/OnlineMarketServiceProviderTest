@@ -7,7 +7,6 @@ import android.view.View
 import android.widget.BaseAdapter
 import android.widget.ListView
 import android.widget.Toast
-import androidx.annotation.NonNull
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -36,8 +35,9 @@ class OrderProductDetail : AppCompatActivity() {
 
         val Shop_Id: String? =intent.getStringExtra("shop_id").toString()
         val Order_Number: String? =intent.getStringExtra("order_number").toString()
-        Toast.makeText(this,"Order_Number:"+ Order_Number,Toast.LENGTH_LONG).show()
-        getOrderProductList(Shop_Id,Order_Number,sharedPreference,binding)
+        val status: String? =intent.getStringExtra("status").toString()
+//        Toast.makeText(this,"Order_Number:"+ Order_Number,Toast.LENGTH_LONG).show()
+        getOrderProductList(Shop_Id,Order_Number,sharedPreference,binding,status)
 
     }
 
@@ -45,16 +45,18 @@ class OrderProductDetail : AppCompatActivity() {
         Shop_Id: String?,
         Order_Number: String?,
         sharedPreference: SharedPreferences,
-        binding:ActivityOrderProductDetailBinding,) {
+        binding: ActivityOrderProductDetailBinding,
+        status: String?,) {
         var queue = Volley.newRequestQueue(this)
         var jrOrderProductDetail:StringRequest = object :StringRequest(Method.POST,UrlConstant.OderProductDetail,
             Response.Listener {
+
                 try{
                     var jsonObject =JSONObject(it)
-                    if (jsonObject.getBoolean("success")){
+                    if (jsonObject.getBoolean("success")) {
 
                        var OrderDetail =jsonObject.getJSONArray("OrderItemDetail")
-//
+//                        Toast.makeText(this,"Length:"+ jsonObject.getJSONArray("OrderItemDetail"),Toast.LENGTH_LONG).show()
 //                        Item.clear()
 
                         for (i in 0 until OrderDetail.length()){
@@ -77,9 +79,13 @@ class OrderProductDetail : AppCompatActivity() {
 
                         ItemListView!!.adapter = adapter
                         binding.tvTotalPrice.text ="Total Price:"+ jsonObject.get("TotalPrice").toString()
+                    }else{
+
+                        Toast.makeText(this,"error:"+jsonObject.getString("message"),Toast.LENGTH_LONG).show()
                     }
+
                 }catch (e:JSONException){
-                    Toast.makeText(this,"Json Exption error:"+e.printStackTrace(),Toast.LENGTH_LONG).show()
+                    Toast.makeText(this,"Json Exption error:"+e,Toast.LENGTH_LONG).show()
                 }
 
             },Response.ErrorListener {
@@ -97,6 +103,7 @@ class OrderProductDetail : AppCompatActivity() {
                 val params:HashMap<String,String> = HashMap()
                 params["order_number"]=Order_Number.toString()
                 params["shop_id"]=Shop_Id.toString()
+                params["status"]=status.toString()
                 return params
             }
         }

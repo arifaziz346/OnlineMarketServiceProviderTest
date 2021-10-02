@@ -17,6 +17,9 @@ public class UrlConstant {
         val SearchMyProduct:String=URL+"api/SearchMyProduct"
         val GetShopDetail:String=URL+"api/GetShopDetail?shop_id="
         val UpdateProfile:String=URL+"api/UpdateProfile"
+        val UpdateStock:String=URL+"api/UpdateStock"
+        val GetTransferredOrder:String=URL+"api/GetTransferredOrder?shop_id="
+        val GetMonthWiseSaleDetail:String=URL+"api/GetMonthWiseSaleDetail?shop_id="
     }
 }
 

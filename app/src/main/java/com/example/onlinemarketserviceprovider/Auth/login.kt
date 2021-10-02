@@ -107,7 +107,7 @@ class login : AppCompatActivity() {
                       val JSONObject = response.getJSONObject("Shops")
 //                      Toast.makeText(this,"WellCome: "+response.get("Shops"),Toast.LENGTH_SHORT).show()
 
-                      Toast.makeText(this,"ShopName: "+JSONObject.get("ShopName"),Toast.LENGTH_SHORT).show()
+//                      Toast.makeText(this,"ShopName: "+JSONObject.get("ShopName"),Toast.LENGTH_SHORT).show()
                       var  sharedPreferences = getSharedPreferences("ShopDetail", MODE_PRIVATE)
                       var editor =sharedPreferences!!.edit()
                       editor.putString("Token",response.get("token").toString())

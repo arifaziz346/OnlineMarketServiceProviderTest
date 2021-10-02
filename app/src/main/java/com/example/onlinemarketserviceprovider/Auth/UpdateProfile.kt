@@ -10,6 +10,7 @@ import androidx.annotation.NonNull
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.example.onlinemarketserviceprovider.Helper.LoadingDialog
 import com.example.onlinemarketserviceprovider.MainActivity
 import com.example.onlinemarketserviceprovider.UrlConstant
 import com.example.onlinemarketserviceprovider.databinding.ActivityUpdateProfileBinding
@@ -19,6 +20,7 @@ import org.json.JSONObject
 class UpdateProfile : AppCompatActivity() {
     private  var sharedPreferance:SharedPreferences?=null
     private var gender:Int?=null
+    private var LoadingDialog: LoadingDialog = LoadingDialog()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityUpdateProfileBinding.inflate(layoutInflater)
@@ -53,7 +55,7 @@ class UpdateProfile : AppCompatActivity() {
     }
     //todo ---------------Update Profile
     private fun updateProfile(binding:  ActivityUpdateProfileBinding) {
-
+        LoadingDialog.startLoad(this)
       val shop_id =sharedPreferance!!.getString("ShopID",null)
               val queue = Volley.newRequestQueue(this)
               val joGetProductRequest: StringRequest = object: StringRequest(Method.POST, UrlConstant.UpdateProfile,
@@ -62,17 +64,21 @@ class UpdateProfile : AppCompatActivity() {
                           var jsonObject = JSONObject(it)
                           if(jsonObject.getBoolean("success")){
                                Toast.makeText(this,"Update Successfully",Toast.LENGTH_LONG).show()
+                              LoadingDialog.isDismiss()
                               }else{
                                   Toast.makeText(this,jsonObject.getJSONObject("message").getJSONArray("ShopPhoneNumber")[0].toString(),Toast.LENGTH_LONG).show()
+                              LoadingDialog.isDismiss()
                               }
 
 
                       }catch(e:JSONException){
+                          LoadingDialog.isDismiss()
                       Toast.makeText(this,"JsonException"+e,Toast.LENGTH_LONG).show()
                       }
 
                   }, Response.ErrorListener {
                       Toast.makeText(this,"Vollery Error:"+it.printStackTrace(), Toast.LENGTH_LONG).show()
+                      LoadingDialog.isDismiss()
 
                   }){
                   override fun getParams(): MutableMap<String, String> {
@@ -104,6 +110,8 @@ class UpdateProfile : AppCompatActivity() {
 
     //todo ---------------Get ShopDetail
     private fun getShopDetail(binding: ActivityUpdateProfileBinding) {
+        LoadingDialog.startLoad(this)
+
         sharedPreferance = getSharedPreferences("ShopDetail", AppCompatActivity.MODE_PRIVATE)
         val shop_id = sharedPreferance!!.getString("ShopID", null)
         val queue = Volley.newRequestQueue(this)
@@ -121,27 +129,30 @@ class UpdateProfile : AppCompatActivity() {
                         if (shopDetail.getString("Gender").toInt()==1){
                             gender=1
                             binding.radioMale.setChecked(true)
-                            Toast.makeText(this,"male",Toast.LENGTH_LONG).show()
+
                         }else{
                             gender=0
                             binding.radioFemale.setChecked(true)
-                            Toast.makeText(this,"Female",Toast.LENGTH_LONG).show()
+
+                            LoadingDialog.isDismiss()
                         }
 
-
+                        LoadingDialog.isDismiss()
                     }else{
                         Toast.makeText(this,"Error"+it,Toast.LENGTH_LONG).show()
+                        LoadingDialog.isDismiss()
                     }
 
 
                 }catch(e:Exception){
                 Toast.makeText(this,"JsonExcpection:"+e.printStackTrace(),Toast.LENGTH_LONG).show()
+                    LoadingDialog.isDismiss()
                 }
 
             }, Response.ErrorListener {
                 Toast.makeText(this, "Vollery Error:" + it.printStackTrace(), Toast.LENGTH_LONG)
                     .show()
-
+                LoadingDialog.isDismiss()
             }) {
 
 

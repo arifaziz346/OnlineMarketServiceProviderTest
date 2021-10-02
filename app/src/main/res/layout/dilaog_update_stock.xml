@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Update Stock"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        ></TextView>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtInputLayoutProductName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:focusable="false"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_productNameUpdateStock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingRight="5dp"
+            android:layout_marginTop="10dp"
+            android:hint="Product Name"
+            android:layout_margin="5dp"
+            android:paddingLeft="5dp"
+            android:textColor="@color/LightBlack"
+            android:textColorHint="@color/LightBlack"
+            android:focusable="false">
+
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtInputLayoutProductCostPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_ProductCostPriceUpdateStock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginTop="5dp"
+            android:hint="Cost Price"
+            android:inputType="number"
+            android:paddingLeft="5dp"
+            android:textColor="@color/LightBlack"
+            android:textColorHint="@color/LightBlack"></com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtInputLayoutProductSellPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_ProductSellPriceUpdateStock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginTop="5dp"
+            android:inputType="number"
+            android:paddingLeft="5dp"
+            android:hint="Sell Price"
+            android:textColor="@color/LightBlack"
+            android:textColorHint="@color/LightBlack"
+            ></com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtInputLayoutProductSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_ProductSizeUpdateStock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:inputType="text"
+            android:layout_margin="5dp"
+            android:hint="Size"
+            android:paddingLeft="5dp"
+            android:textColor="@color/LightBlack"
+            android:textColorHint="@color/LightBlack"
+            ></com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtInputLayoutProductQuantity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_ProductQuantityUpdateStock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:inputType="number"
+            android:hint="Quantity"
+            android:textColor="@color/LightBlack"
+            android:paddingLeft="5dp"
+            android:layout_margin="5dp"
+            android:textColorHint="@color/LightBlack"
+            ></com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtInputLayoutProductColor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_ProductColorUpdateStock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:hint="Color"
+            android:textColor="@color/LightBlack"
+            android:paddingLeft="5dp"
+            android:layout_margin="5dp"
+            android:textColorHint="@color/LightBlack"
+            ></com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txtInputLayoutProductDiscount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_ProductDiscountUpdateStock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:hint="Discount"
+            android:textColor="@color/LightBlack"
+            android:paddingLeft="5dp"
+            android:inputType="number"
+            android:layout_margin="5dp"
+            android:textColorHint="@color/LightBlack"
+            ></com.google.android.material.textfield.TextInputEditText>
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center">
+        <Button
+            android:id="@+id/btn_Cancel_diloagBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="2.5dp"
+             android:text="Cancel"></Button>
+        <Button
+            android:id="@+id/btn_UpdateStock"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Submit"
+            android:layout_margin="2.5dp"></Button>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</LinearLayout>

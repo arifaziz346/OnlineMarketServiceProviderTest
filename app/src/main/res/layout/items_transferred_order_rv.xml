@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:card_view="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    card_view:cardBackgroundColor="#F9F9FA"
+    card_view:cardCornerRadius="5dp"
+    card_view:cardElevation="1dp"
+    android:layout_margin="5dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/OrderNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Order Number:124524"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/horizentalLine"
+            android:layout_width="match_parent"
+            android:layout_height="0.8dp"
+            android:background="@color/LightBlack"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/OrderNumber"></View>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:padding="10dp"
+            android:src="@drawable/succesfull_transfer_icon"
+            app:layout_constraintBottom_toTopOf="@+id/BtnItemsDetail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/horizentalLine"
+            app:layout_constraintVertical_bias="0.264"></ImageView>
+
+        <TextView
+            android:id="@+id/OrderedBy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="Order By: Arif Aziz"
+            app:layout_constraintLeft_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/horizentalLine"></TextView>
+
+        <TextView
+            android:id="@+id/OrderedDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="Order Date : 7/22/2021"
+            app:layout_constraintLeft_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/OrderedBy"></TextView>
+
+        <TextView
+            android:id="@+id/MobileNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="Phone Number: 03429040048"
+            app:layout_constraintLeft_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/OrderedDate"></TextView>
+
+        <TextView
+            android:id="@+id/City"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="City: Chitral"
+            app:layout_constraintLeft_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/MobileNumber"></TextView>
+
+        <TextView
+            android:id="@+id/PhysicalAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:text="Address : Alkhair Electric Store Shahi Bazar Chitral"
+            app:layout_constraintLeft_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/City"></TextView>
+
+        <!--        <androidx.appcompat.widget.AppCompatButton-->
+        <!--            android:id="@+id/btnCancelOrder"-->
+        <!--            android:layout_width="121dp"-->
+        <!--            android:layout_height="30dp"-->
+        <!--            android:layout_weight="1"-->
+        <!--            android:background="@color/colorPrimary"-->
+        <!--            android:text="Cancel"-->
+        <!--            android:textColor="@color/white"-->
+        <!--            card_view:layout_editor_absoluteX="10dp"-->
+        <!--            card_view:layout_editor_absoluteY="127dp"></androidx.appcompat.widget.AppCompatButton>-->
+
+
+        <!--        <androidx.appcompat.widget.AppCompatButton-->
+        <!--            android:id="@+id/btnTransferOrder"-->
+        <!--            android:layout_width="120dp"-->
+        <!--            android:layout_height="30dp"-->
+        <!--            android:layout_weight="1"-->
+        <!--            android:background="@color/colorPrimary"-->
+        <!--            android:text="Transfer"-->
+        <!--            android:textColor="@color/white"-->
+        <!--            card_view:layout_editor_absoluteX="141dp"-->
+        <!--            card_view:layout_editor_absoluteY="127dp"></androidx.appcompat.widget.AppCompatButton>-->
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/BtnItemsDetail"
+            android:layout_width="121dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:text="Item Details"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/PhysicalAddress"></androidx.appcompat.widget.AppCompatButton>
+
+        <TextView
+            android:id="@+id/OrderTransferredTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Transferred Date:"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold|italic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/BtnItemsDetail"
+            app:layout_constraintHorizontal_bias="0.029"
+            app:layout_constraintLeft_toRightOf="@id/BtnItemsDetail"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/PhysicalAddress"
+            app:layout_constraintVertical_bias="0.916" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

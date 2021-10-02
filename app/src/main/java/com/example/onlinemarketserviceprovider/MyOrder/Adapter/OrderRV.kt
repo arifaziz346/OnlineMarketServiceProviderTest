@@ -1,7 +1,7 @@
 package com.example.onlinemarketserviceprovider.MyOrder.Adapter
 
+import android.app.Activity
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import android.view.LayoutInflater
@@ -15,22 +15,19 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
 import com.android.volley.Response
-import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.onlinemarketserviceprovider.UrlConstant
 import com.example.onlinemarketserviceprovider.MyOrder.Modal.Order
 import com.example.onlinemarketserviceprovider.MyOrder.OrderProductDetail
 import com.example.onlinemarketserviceprovider.R
-import kotlinx.coroutines.NonCancellable.cancel
 import org.json.JSONException
 import org.json.JSONObject
 import java.lang.Exception
-import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
-class OrderRV(context: Context,OrderList:ArrayList<Order>):RecyclerView.Adapter<OrderRV.viewHolder>() {
+class OrderRV(context: Activity,OrderList:ArrayList<Order>):RecyclerView.Adapter<OrderRV.viewHolder>() {
 
     private var mContext:Context =context
     private var OrderList:ArrayList<Order> =OrderList
@@ -64,7 +61,7 @@ class OrderRV(context: Context,OrderList:ArrayList<Order>):RecyclerView.Adapter<
             //todo ------------->Show confirmation message
            val message:String ="Are you sure you want to cancel this order?"
             code=1
-            confirmtionMessage(order.OrderNumber,message,code)
+            confirmtionMessage(order.OrderNumber, message, code,position,OrderList)
 
 
         })
@@ -73,7 +70,9 @@ class OrderRV(context: Context,OrderList:ArrayList<Order>):RecyclerView.Adapter<
         holder.btnTransfer.setOnClickListener(View.OnClickListener {
             val message:String ="Are you sure you want to transfer this order?"
             code=2
-            confirmtionMessage(order.OrderNumber,message,code)
+            confirmtionMessage(order.OrderNumber,message,code,position,OrderList)
+//            OrderList.removeAt(position)
+//            notifyDataSetChanged()
         })
 
         //todo -------------> Show Order Product Detail list
@@ -112,7 +111,8 @@ class OrderRV(context: Context,OrderList:ArrayList<Order>):RecyclerView.Adapter<
 
 
     //todo --------------> DilogBox for confimation <----------------------
-    private fun confirmtionMessage(OrderNumber:Int,message:String,code:Int) {
+    private fun confirmtionMessage(OrderNumber: Int, message: String, code: Int, position: Int,OrderList: ArrayList<Order>) {
+
         val builder = AlertDialog.Builder(mContext)
         //set title for alert dialog
         builder.setTitle(message)
@@ -124,7 +124,9 @@ class OrderRV(context: Context,OrderList:ArrayList<Order>):RecyclerView.Adapter<
             //todo --------------> this function is used to cancel order
             when(code){
                 1->(cancelOrder(OrderNumber))
-                2->(transferOrder(OrderNumber))
+                2->(transferOrder(OrderNumber,position)
+
+                        )
 
             }
 
@@ -181,21 +183,25 @@ class OrderRV(context: Context,OrderList:ArrayList<Order>):RecyclerView.Adapter<
     }
 
     //todo Transfer order----------------------------------->
-    private  fun transferOrder(OrderNumber: Int){
+    private  fun transferOrder(OrderNumber: Int, position: Int){
         var queue =Volley.newRequestQueue(mContext)
         var jrTransferOrder:StringRequest = object :StringRequest(Method.POST,UrlConstant.TransferOrder,Response.Listener {
                var jsonObject:JSONObject = JSONObject(it)
           try{
               if(jsonObject.getBoolean("success")){
+                  //Delete form
+                  OrderList.removeAt(position)
+                  notifyDataSetChanged()
+
                   Toast.makeText(mContext,"Success"+jsonObject.get("message"),Toast.LENGTH_LONG).show()
               }else{
                   Toast.makeText(mContext,"error:Fail"+jsonObject.get("message"),Toast.LENGTH_LONG).show()
               }
           }catch(e:Exception){
-              Toast.makeText(mContext,"error:"+e.printStackTrace(),Toast.LENGTH_LONG).show()
+              Toast.makeText(mContext,"error:"+e,Toast.LENGTH_LONG).show()
           }
         },Response.ErrorListener {
-            Toast.makeText(mContext,"error:"+it.printStackTrace(),Toast.LENGTH_LONG).show()
+            Toast.makeText(mContext,"error:"+it,Toast.LENGTH_LONG).show()
         }){
             override fun getHeaders(): MutableMap<String, String> {
                 val token = sharedPreferences.getString("Token",null)

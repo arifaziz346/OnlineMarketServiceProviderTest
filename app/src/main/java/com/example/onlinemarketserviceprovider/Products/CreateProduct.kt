@@ -200,6 +200,7 @@ class CreateProduct : AppCompatActivity() {
     //todo --------------------------->Upload image and data to serve
     private fun uploadData(){
         loadingDialog.startLoad(this)
+//        loadingDialog.startLoad(this)
 
 
         //Volley
@@ -214,14 +215,16 @@ class CreateProduct : AppCompatActivity() {
                       finish();
                       startActivity(getIntent());
 
-                      loadingDialog.isDismiss()
+
                   Toast.makeText(this,"Success"+jsonObject.get("message"),Toast.LENGTH_LONG).show()
-                  }else{
                       loadingDialog.isDismiss()
+                  }else{
+
                       Toast.makeText(this,"error:"+jsonObject.getString("message"),Toast.LENGTH_LONG).show()
+                      loadingDialog.isDismiss()
                   }
               }catch(e:Exception){
-                  loadingDialog.isDismiss()
+
                   Toast.makeText(this,"Json Error"+e.printStackTrace(),Toast.LENGTH_LONG).show()
                   loadingDialog.isDismiss()
               }
@@ -379,10 +382,21 @@ class CreateProduct : AppCompatActivity() {
         return false
         }
 
-        if(binding.etProductDiscount.getText().toString().toInt()>binding.etProductSellPrice.getText().toString().toInt()){
-            Toast.makeText(this,"Discount Can't be greater than Sell Price",Toast.LENGTH_LONG).show()
-            return false
+        //Why i used try catch?? because when we pass empty discount it will be assume string  and string can't compare with integer
+        try {
+            if (binding.etProductDiscount.getText().toString().toInt() > binding.etProductSellPrice.getText().toString().toInt()
+            ) {
+                Toast.makeText(this, "Discount Can't be greater than Sell Price", Toast.LENGTH_LONG)
+                    .show()
+                return false
+            }
+        }catch(e:Exception){
+            if(binding.etProductDiscount.getText().toString()==""){
+                binding.etProductDiscount.setText(null)
+            }
         }
+
+
 
      return true
     }

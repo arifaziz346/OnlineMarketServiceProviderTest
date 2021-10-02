@@ -26,7 +26,6 @@
         android:layout_gravity="bottom"
         app:layout_constraintTop_toBottomOf="@id/product_imageView"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/product_delete"
         android:src="@drawable/ic_edit_black_24dp"
         android:layout_below="@id/product_imageView"
@@ -42,11 +41,8 @@
         app:layout_constraintTop_toBottomOf="@id/product_imageView"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginRight="5dp"
-        android:src="@drawable/delete_forever_black_24dp"
+        android:src="@drawable/delete_forever_black_24dp"></ImageButton>
 
-        >
-
-    </ImageButton>
 </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
@@ -102,5 +98,13 @@
             android:singleLine="true">
         </TextView>
 
+        <TextView
+            android:id="@+id/tvUpdateStock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Click Update Stock"
+            android:textSize="15dp"
+            android:textStyle="italic|bold"
+            android:textColor="@color/colorPrimary"></TextView>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

@@ -170,8 +170,8 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cvLoguot"
-            android:layout_width="122dp"
+            android:id="@+id/AbandonedOrder"
+            android:layout_width="128dp"
             android:layout_height="80dp"
             android:layout_marginTop="36dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -184,23 +184,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="5dp">
+                <ImageView
+                    android:id="@+id/TransferredOrderIV"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/transferred_order"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"></ImageView>
 
-                <!--                    <ImageView-->
-                <!--                        android:id="@+id/LogOutTV"-->
-                <!--                        android:layout_width="wrap_content"-->
-                <!--                        android:layout_height="wrap_content"-->
-                <!--                        android:src="@drawable/log_out_shop"-->
-                <!--                        app:layout_constraintLeft_toLeftOf="parent"-->
-                <!--                        app:layout_constraintRight_toRightOf="parent"-->
-                <!--                        app:layout_constraintTop_toTopOf="parent"></ImageView>-->
-
-                <!--                    <TextView-->
-                <!--                        android:layout_width="wrap_content"-->
-                <!--                        android:layout_height="wrap_content"-->
-                <!--                        android:text="Log Out"-->
-                <!--                        app:layout_constraintLeft_toLeftOf="parent"-->
-                <!--                        app:layout_constraintRight_toRightOf="parent"-->
-                <!--                        app:layout_constraintTop_toBottomOf="@+id/LogOutTV"></TextView>-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Transferred Order"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/TransferredOrderIV"></TextView>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.google.android.material.card.MaterialCardView>
@@ -251,7 +250,7 @@
             app:layout_constraintBottom_toTopOf="@+id/guideline4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
-            app:layout_constraintTop_toBottomOf="@id/cvLoguot"
+            app:layout_constraintTop_toBottomOf="@id/AbandonedOrder"
             app:strokeColor="@color/lightDark"
             app:strokeWidth="1dp">
 

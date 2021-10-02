@@ -7,11 +7,46 @@
     android:layout_height="match_parent"
     tools:context=".Products.MyProduct">
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnBackMyOrder"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/btn_back_create_product"
+        ></androidx.appcompat.widget.AppCompatButton>
+
+    <TextView
+        android:id="@+id/TopCreateProduct"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:text="My Products"
+        android:textColor="@color/white"
+        android:textSize="18dp"
+        android:textStyle="bold"></TextView>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_CreateProduct"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="38dp"
+        android:background="@drawable/add_product_icon"
+        android:gravity="right"
+        android:textColor="@color/colorPrimary" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtLayoutProductSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
+        android:layout_below="@id/TopCreateProduct"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         >
 
@@ -30,57 +65,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="4dp"
-        android:layout_below="@+id/txtLayoutProductSearch"
-        android:layout_above="@id/btn_CreateProduct">
+        android:layout_below="@+id/txtLayoutProductSearch">
 
     </androidx.recyclerview.widget.RecyclerView>
 
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_CreateProduct"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:layout_gravity="center"
-        android:background="@drawable/add_round_shape_button"
-        android:textColor="@color/colorPrimary"/>
 
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/TopCreateProductBtn"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/colorPrimary"
-        android:layout_alignParentBottom="true"
-        >
 
-        <TextView
-            android:id="@+id/idTotalRevenue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="5dp"
-            android:text="Revenue:12455"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"></TextView>
-
-        <TextView
-            android:id="@+id/idTotalProfit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:text="Profit:12455"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"></TextView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </RelativeLayout>
