@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -12,16 +13,24 @@ import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.example.onlinemarketserviceprovider.Helper.FCMToken
 import com.example.onlinemarketserviceprovider.Helper.LoadingDialog
 import com.example.onlinemarketserviceprovider.UrlConstant
 import com.example.onlinemarketserviceprovider.Helper.Network
 import com.example.onlinemarketserviceprovider.MainActivity
 import com.example.onlinemarketserviceprovider.R
 import com.example.onlinemarketserviceprovider.databinding.ActivityLoginBinding
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import com.google.firebase.installations.FirebaseInstallations
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.FirebaseMessaging
+import com.google.firebase.messaging.ktx.messaging
 import org.json.JSONException
 import org.json.JSONObject
+import java.lang.Exception
 
 class login : AppCompatActivity() {
     private   var txtEmail:TextInputEditText?=null
@@ -30,6 +39,8 @@ class login : AppCompatActivity() {
     private   var passwordLayout: TextInputLayout?=null
     private var btnSignIn:Button?=null
     private  var loadingDialog: LoadingDialog = LoadingDialog()
+    private var fcm_token:String=""
+    private var fcmToken=FCMToken()
 //    private var sharedPreferences:SharedPreferences?=null
 
 
@@ -45,6 +56,29 @@ class login : AppCompatActivity() {
 //        btnSignIn =findViewById<Button>(R.id.btnSignIn) as Button
         btnSignIn = binding.btnSignIn
 
+//        Firebase.messaging.isAutoInitEnabled = true
+        //this is used to generate Token to  FirebaseMessaging.getInstance().se
+        try{
+//            FirebaseMessaging.getInstance().deleteToken()
+//            FirebaseInstallations.getInstance().delete()
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener
+        {
+            if(!it.isSuccessful){
+
+            }
+            fcm_token= it.result.toString()
+            Toast.makeText(this, "token:"+fcm_token, Toast.LENGTH_SHORT).show()
+        })}
+        catch (ex:Exception){
+            Toast.makeText(this, "token:"+ex.message, Toast.LENGTH_SHORT).show()
+        }
+
+
+        binding.txtSignUp.setOnClickListener(View.OnClickListener {
+            var intent = Intent(this,register::class.java)
+            startActivity(intent)
+        })
+
 
         btnSignIn!!.setOnClickListener {
             if (validate()) {
@@ -59,10 +93,7 @@ class login : AppCompatActivity() {
         }
 }
 
-//    fun signUp(view: View) {
-//        var intent = Intent(this,register::class.java)
-//        startActivity(intent)
-//    }
+
 
     //Use to Validate Email and Password
     fun validate():Boolean{
@@ -98,7 +129,7 @@ class login : AppCompatActivity() {
 
 
         val jsonObjectRequest = JsonObjectRequest(Request.Method.POST, "http://192.168.43.193:8080/api/loginShop",joLogIn,
-            Response.Listener {response->
+            {response->
 
                try {
 
@@ -121,6 +152,12 @@ class login : AppCompatActivity() {
                       editor.putBoolean("register",true)
                       editor.commit()
 
+                      //Gnerate FCM token and saved in database
+
+                      fcmToken.generateFCMToken(response.get("token").toString(),JSONObject.get("id").toString(),
+                      fcm_token,this)
+
+
                       val  intent =Intent(this,MainActivity::class.java)
                       startActivity(intent)
 
@@ -139,7 +176,8 @@ class login : AppCompatActivity() {
                    loadingDialog.isDismiss()
                }
 
-            },Response.ErrorListener { error ->
+            },
+            { error ->
                 // TODO: Handle error
                 error.printStackTrace()
                 Toast.makeText(this,error.printStackTrace().toString(),Toast.LENGTH_SHORT).show()
@@ -185,6 +223,7 @@ class login : AppCompatActivity() {
         alertDialog.setCancelable(false)
         alertDialog.show()
     }
+
 
 
 

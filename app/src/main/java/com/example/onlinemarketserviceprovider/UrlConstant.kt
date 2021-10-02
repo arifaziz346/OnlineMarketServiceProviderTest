@@ -6,6 +6,7 @@ public class UrlConstant {
         val  RegisterShop:String =URL+"api/RegisterShop"
         val  LoginShop:String =URL+"api/loginShop"
         val  GetProduct:String = URL+"api/GetProduct?shop_id="
+        val  GenerateFCMToken:String = URL+"api/GenerateFCMToken"
         val DashboardDetail:String=URL+"api/DashboardDetail?shop_id="
         val MyOrderProduct:String=URL+"api/MyOrderProduct?shop_id="
         val CancelOrder:String=URL+"api/CancelOrder"
@@ -20,6 +21,10 @@ public class UrlConstant {
         val UpdateStock:String=URL+"api/UpdateStock"
         val GetTransferredOrder:String=URL+"api/GetTransferredOrder?shop_id="
         val GetMonthWiseSaleDetail:String=URL+"api/GetMonthWiseSaleDetail?shop_id="
+        val GetExpense:String=URL+"api/GetExpense"
+        val SearchExpense:String=URL+"api/SearchExpense"
+        val CreateExpense:String=URL+"api/CreateExpense"
+
     }
 }
 

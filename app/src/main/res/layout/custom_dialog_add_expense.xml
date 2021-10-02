@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<androidx.appcompat.widget.LinearLayoutCompat
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="5dp">
+<!--    <TextView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Add Expense"-->
+<!--        android:textSize="18sp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:textAlignment="center"></TextView>-->
+    <EditText
+        android:id="@+id/et_amountExpense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter amount..."
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="20dp"
+        ></EditText>
+    <EditText
+        android:id="@+id/et_descrioptionExpense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter expense desciption..."
+        android:layout_marginLeft="5dp"
+        ></EditText>
+   <androidx.appcompat.widget.LinearLayoutCompat
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+       android:gravity="right">
+       <Button
+           android:id="@+id/btnCancelExpense"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Cancel"
+           android:layout_marginRight="5dp"
+           ></Button>
+       <Button
+           android:id="@+id/btnSubmitExpense"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Submit"
+           ></Button>
+   </androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.constraintlayout.widget.ConstraintLayout>

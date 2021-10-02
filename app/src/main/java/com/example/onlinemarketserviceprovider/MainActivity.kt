@@ -1,10 +1,12 @@
 package com.example.onlinemarketserviceprovider
 
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.annotation.NonNull
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
@@ -12,12 +14,17 @@ import com.android.volley.toolbox.Volley
 import com.bumptech.glide.Glide
 import com.example.onlinemarketserviceprovider.Auth.UpdateProfile
 import com.example.onlinemarketserviceprovider.Auth.login
+import com.example.onlinemarketserviceprovider.Dashbord.Expense
 import com.example.onlinemarketserviceprovider.Dashbord.SaleDashboard
 import com.example.onlinemarketserviceprovider.MyOrder.TransferredOrderDetail
 import com.example.onlinemarketserviceprovider.MyOrder.MyOrder
 import com.example.onlinemarketserviceprovider.Products.MyProduct
 import com.example.onlinemarketserviceprovider.databinding.ActivityMainBinding
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.installations.FirebaseInstallations
+import com.google.firebase.messaging.FirebaseMessaging
 import org.json.JSONObject
+import java.io.File
 
 class MainActivity : AppCompatActivity() {
     private lateinit var sharedPreferences: SharedPreferences
@@ -31,6 +38,13 @@ class MainActivity : AppCompatActivity() {
 
         //ShopName
         binding.TvShopName.setText(sharedPreferences.getString("ShopName",null))
+
+
+
+        FirebaseMessaging.getInstance().token.addOnSuccessListener {
+
+        }
+
 
         //Sale Dashboard
         binding.cvSaleDashboard.setOnClickListener(
@@ -62,11 +76,32 @@ class MainActivity : AppCompatActivity() {
                 finish()
             })
 
+        binding.cvAssets.setOnClickListener(
+            View.OnClickListener {
+//                val intent = Intent(this,UpdateProfile::class.java)
+//                startActivity(intent)
+//                finish()
+            }
+        )
+
+        binding.cvExpense.setOnClickListener(View.OnClickListener {
+            val intent = Intent(this,Expense::class.java)
+            startActivity(intent)
+            finish()
+        })
+
         binding.cvLogOut.setOnClickListener(
             View.OnClickListener {
+//                FirebaseMessaging.getInstance().deleteToken()
+                sharedPreferences.edit().clear()
+                trimCache(this)
+                this.cacheDir.deleteRecursively()
+                getCacheDir().delete()
                 val intent = Intent(this,login::class.java)
                 startActivity(intent)
                 finish()
+
+
             })
 
         //Check has order or not
@@ -118,5 +153,19 @@ class MainActivity : AppCompatActivity() {
 
         queue.add(myOrderRequest)
     }
-
+    fun trimCache(context: Context) {
+        val dir: File? = context.cacheDir
+        if (dir != null && dir.isDirectory()) {
+            val children: Array<File> = dir.listFiles()
+            if (children == null) {
+                // Either dir does not exist or is not a directory
+            } else {
+                var temp: File
+                for (i in children.indices) {
+                    temp = children[i]
+                    temp.delete()
+                }
+            }
+        }
+    }
 }

@@ -100,7 +100,7 @@
             android:layout_marginRight="6dp"/>
         <TextView
             android:id="@+id/txtSignUp"
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:text="Sign up"
             android:textColor="@color/colorPrimary"

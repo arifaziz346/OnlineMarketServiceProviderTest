@@ -3,19 +3,28 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Arif Aziz/AndroidStudioProjects/OnlineMarketServiceProvider/app/src/main/res/drawable-v24/btn_round.xml" value="0.28" />
         <entry key="..\:/Users/Arif Aziz/AndroidStudioProjects/OnlineMarketServiceProvider/app/src/main/res/drawable-v24/item_dashboard_background.xml" value="0.28" />
+        <entry key="..\:/Users/Arif Aziz/AndroidStudioProjects/OnlineMarketServiceProvider/app/src/main/res/drawable/app_color_back_btn.xml" value="0.26944444444444443" />
+        <entry key="..\:/Users/Arif Aziz/AndroidStudioProjects/OnlineMarketServiceProvider/app/src/main/res/drawable/background_expense_description.xml" value="0.15677083333333333" />
         <entry key="..\:/Users/Arif Aziz/AndroidStudioProjects/OnlineMarketServiceProvider/app/src/main/res/drawable/background_product_upload_images.xml" value="0.2846153846153846" />
+        <entry key="..\:/Users/Arif Aziz/AndroidStudioProjects/OnlineMarketServiceProvider/app/src/main/res/drawable/btn_back_create_product.xml" value="0.275" />
         <entry key="..\:/Users/Arif Aziz/AndroidStudioProjects/OnlineMarketServiceProvider/app/src/main/res/drawable/btn_back_product_detail.xml" value="0.2890625" />
+        <entry key="..\:/Users/Arif Aziz/AndroidStudioProjects/OnlineMarketServiceProvider/app/src/main/res/drawable/edit_expense_icon.xml" value="0.28" />
+        <entry key="..\:/Users/Arif Aziz/AndroidStudioProjects/OnlineMarketServiceProvider/app/src/main/res/drawable/ic_add_expense.xml" value="0.28" />
+        <entry key="..\:/Users/Arif Aziz/AndroidStudioProjects/OnlineMarketServiceProvider/app/src/main/res/drawable/ic_delete_icon.xml" value="0.28" />
         <entry key="..\:/Users/Arif Aziz/AndroidStudioProjects/OnlineMarketServiceProvider/app/src/main/res/drawable/image_upload_product.xml" value="0.2846153846153846" />
         <entry key="..\:/Users/Arif Aziz/AndroidStudioProjects/OnlineMarketServiceProvider/app/src/main/res/drawable/item_mont_wise_sale_profit_lv.xml" value="0.28" />
+        <entry key="..\:/Users/Arif Aziz/AndroidStudioProjects/OnlineMarketServiceProvider/app/src/main/res/drawable/read_more_expense_icon.xml" value="0.15677083333333333" />
         <entry key="..\:/Users/Arif Aziz/AndroidStudioProjects/OnlineMarketServiceProvider/app/src/main/res/drawable/remove_image_icon.xml" value="0.2846153846153846" />
         <entry key="..\:/Users/Arif Aziz/AndroidStudioProjects/OnlineMarketServiceProvider/app/src/main/res/layout/activity_abandoned_order.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/Arif Aziz/AndroidStudioProjects/OnlineMarketServiceProvider/app/src/main/res/layout/activity_create_product.xml" value="0.25" />
         <entry key="..\:/Users/Arif Aziz/AndroidStudioProjects/OnlineMarketServiceProvider/app/src/main/res/layout/activity_edit_product.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/Arif Aziz/AndroidStudioProjects/OnlineMarketServiceProvider/app/src/main/res/layout/activity_expense.xml" value="0.2682291666666667" />
         <entry key="..\:/Users/Arif Aziz/AndroidStudioProjects/OnlineMarketServiceProvider/app/src/main/res/layout/activity_login.xml" value="0.2574074074074074" />
-        <entry key="..\:/Users/Arif Aziz/AndroidStudioProjects/OnlineMarketServiceProvider/app/src/main/res/layout/activity_main.xml" value="0.26871794871794874" />
+        <entry key="..\:/Users/Arif Aziz/AndroidStudioProjects/OnlineMarketServiceProvider/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/Arif Aziz/AndroidStudioProjects/OnlineMarketServiceProvider/app/src/main/res/layout/activity_my_order.xml" value="0.27291666666666664" />
-        <entry key="..\:/Users/Arif Aziz/AndroidStudioProjects/OnlineMarketServiceProvider/app/src/main/res/layout/activity_my_product.xml" value="0.5" />
+        <entry key="..\:/Users/Arif Aziz/AndroidStudioProjects/OnlineMarketServiceProvider/app/src/main/res/layout/activity_my_product.xml" value="0.4648148148148148" />
         <entry key="..\:/Users/Arif Aziz/AndroidStudioProjects/OnlineMarketServiceProvider/app/src/main/res/layout/activity_order_product_detail.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/Arif Aziz/AndroidStudioProjects/OnlineMarketServiceProvider/app/src/main/res/layout/activity_products.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/Arif Aziz/AndroidStudioProjects/OnlineMarketServiceProvider/app/src/main/res/layout/activity_register.xml" value="0.2574074074074074" />
@@ -24,13 +33,16 @@
         <entry key="..\:/Users/Arif Aziz/AndroidStudioProjects/OnlineMarketServiceProvider/app/src/main/res/layout/activity_start.xml" value="0.25885416666666666" />
         <entry key="..\:/Users/Arif Aziz/AndroidStudioProjects/OnlineMarketServiceProvider/app/src/main/res/layout/activity_transferred_order.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/Arif Aziz/AndroidStudioProjects/OnlineMarketServiceProvider/app/src/main/res/layout/activity_update_profile.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/Arif Aziz/AndroidStudioProjects/OnlineMarketServiceProvider/app/src/main/res/layout/custom_dialog_add_expense.xml" value="0.2682291666666667" />
         <entry key="..\:/Users/Arif Aziz/AndroidStudioProjects/OnlineMarketServiceProvider/app/src/main/res/layout/custom_progress_dialog.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/Arif Aziz/AndroidStudioProjects/OnlineMarketServiceProvider/app/src/main/res/layout/dilaog_update_stock.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/Arif Aziz/AndroidStudioProjects/OnlineMarketServiceProvider/app/src/main/res/layout/fragment_dashboard.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/Arif Aziz/AndroidStudioProjects/OnlineMarketServiceProvider/app/src/main/res/layout/fragment_my_order.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/Arif Aziz/AndroidStudioProjects/OnlineMarketServiceProvider/app/src/main/res/layout/fragment_product.xml" value="0.14270833333333333" />
+        <entry key="..\:/Users/Arif Aziz/AndroidStudioProjects/OnlineMarketServiceProvider/app/src/main/res/layout/items_Empty.xml" value="0.2682291666666667" />
         <entry key="..\:/Users/Arif Aziz/AndroidStudioProjects/OnlineMarketServiceProvider/app/src/main/res/layout/items_abondoned_order.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/Arif Aziz/AndroidStudioProjects/OnlineMarketServiceProvider/app/src/main/res/layout/items_abondoned_order_rv.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/Arif Aziz/AndroidStudioProjects/OnlineMarketServiceProvider/app/src/main/res/layout/items_expense_month_wise_lv.xml" value="0.2682291666666667" />
         <entry key="..\:/Users/Arif Aziz/AndroidStudioProjects/OnlineMarketServiceProvider/app/src/main/res/layout/items_my_product_order.xml" value="0.26871794871794874" />
         <entry key="..\:/Users/Arif Aziz/AndroidStudioProjects/OnlineMarketServiceProvider/app/src/main/res/layout/items_product_recylerview.xml" value="0.26871794871794874" />
         <entry key="..\:/Users/Arif Aziz/AndroidStudioProjects/OnlineMarketServiceProvider/app/src/main/res/layout/items_sale_profit_month_wise_lv.xml" value="0.2682291666666667" />

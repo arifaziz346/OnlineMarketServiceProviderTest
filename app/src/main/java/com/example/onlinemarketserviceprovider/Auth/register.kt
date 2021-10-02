@@ -10,17 +10,22 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.example.onlinemarketserviceprovider.Helper.FCMToken
 import com.example.onlinemarketserviceprovider.Helper.LoadingDialog
 import com.example.onlinemarketserviceprovider.UrlConstant
 import com.example.onlinemarketserviceprovider.MainActivity
 import com.example.onlinemarketserviceprovider.databinding.ActivityRegisterBinding
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.FirebaseMessaging
 import org.json.JSONException
 import org.json.JSONObject
+import java.lang.Exception
 
 class register : AppCompatActivity() {
      private var Gender:Int?=1
     private  var loadingDialog: LoadingDialog = LoadingDialog()
-
+    private var fcm_token:String=""
+    private var fcmToken= FCMToken()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         var binding = ActivityRegisterBinding.inflate(layoutInflater)
@@ -45,6 +50,20 @@ class register : AppCompatActivity() {
       binding.radioFemale.setOnClickListener(View.OnClickListener {
           Gender =0
       })
+
+
+        try{
+        //this is used to generate token
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener
+        {
+            if(!it.isSuccessful){
+
+            }
+            fcm_token= it.result.toString()
+            Toast.makeText(this, "token:"+fcm_token, Toast.LENGTH_SHORT).show()
+        })}  catch (ex: Exception){
+            Toast.makeText(this, "token:"+ex.message, Toast.LENGTH_SHORT).show()
+        }
 
     }
 
@@ -87,6 +106,10 @@ class register : AppCompatActivity() {
                         editor.putString("ShopType",JSONObject.get("ShopType").toString())
                         editor.putBoolean("register",true)
                         editor.commit()
+
+                        fcmToken.generateFCMToken(response.getString("token"),
+                            JSONObject.get("id").toString(),
+                        fcm_token,this)
 
                         val  intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)

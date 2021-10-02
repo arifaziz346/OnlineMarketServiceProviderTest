@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:background="@drawable/background_expense_description">
+
+    <View
+        android:id="@+id/top_horizental_line"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#c0c0c0"
+        android:paddingTop="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/month_ExpenseTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="Month"
+        android:textSize="14dp"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></TextView>
+
+    <TextView
+        android:id="@+id/AmountExpenseTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="180dp"
+        android:text="Amount"
+        android:textSize="14dp"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/llAction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <TextView
+            android:id="@+id/EditExpense"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:drawableLeft="@drawable/edit_expense_icon"
+            android:textColor="@color/colorPrimary"
+            android:textSize="14dp"></TextView>
+        <TextView
+            android:id="@+id/DeleteExpense"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:drawableLeft="@drawable/ic_delete_icon"
+            android:textColor="@color/colorPrimary"
+            android:textSize="14dp"
+             />
+
+<!--        <TextView-->
+<!--            android:id="@+id/moreDetail"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginEnd="10dp"-->
+<!--            android:drawableLeft="@drawable/read_more_expense_icon"-->
+<!--            android:textColor="@color/colorPrimary"-->
+<!--            android:textSize="14dp"-->
+<!--            />-->
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <TextView
+        android:id="@+id/expenseDescriptionTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_expense_description"
+        android:textStyle="italic"
+        android:padding="3dp"
+        android:text="Returns a substring of chars from a range of this char sequence starting at the startIndex and ending right
+Returns the substring of this string starting at the startIndex and ending right before the endIndex."
+        app:layout_constraintTop_toBottomOf="@+id/llAction"></TextView>
+<!--    <View-->
+<!--        android:id="@+id/lineBelowItems"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="2dp"-->
+<!--        android:background="#c0c0c0"-->
+<!--        android:layout_marginTop="5dp"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/expnseDescriptionTV" />-->
+</androidx.constraintlayout.widget.ConstraintLayout>

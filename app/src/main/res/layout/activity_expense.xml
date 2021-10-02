@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Dashbord.Expense"
+    android:layout_margin="5dp"
+    >
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnBack"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/btn_back_product_detail"></androidx.appcompat.widget.AppCompatButton>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="8dp"
+        android:layout_toRightOf="@id/btnBack"
+        android:text="Expenses"
+        android:textSize="18dp"
+        android:textStyle="bold"></TextView>
+
+    <View
+        android:id="@+id/top_horizental_line"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#c0c0c0"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/btnBack"/>
+
+<!--    <com.google.android.material.card.MaterialCardView-->
+<!--        android:id="@+id/cvSalreportYear"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="5dp"-->
+<!--        android:layout_margin="10dp"-->
+<!--        android:layout_below="@id/top_horizental_line"-->
+<!--        android:background="@color/lightDark">-->
+
+<!--        <androidx.appcompat.widget.LinearLayoutCompat-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:orientation="vertical"-->
+<!--            android:padding="10dp"-->
+
+<!--            android:background="@color/lightDark">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/tv_Year"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textStyle="bold"-->
+<!--                android:text="Sale Report"></TextView>-->
+<!--            <TextView-->
+<!--                android:id="@+id/tv_totalSale"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+
+<!--                android:text="Sale: 0"></TextView>-->
+<!--            <TextView-->
+<!--                android:id="@+id/tv_totalProfit"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Profit: 0"></TextView>-->
+<!--        </androidx.appcompat.widget.LinearLayoutCompat>-->
+<!--    </com.google.android.material.card.MaterialCardView>-->
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvOrder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_margin="10dp"
+        android:layout_below="@id/top_horizental_line"
+        android:background="@color/lightDark">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/TotalOrderLL"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="10dp"
+            android:background="@color/lightDark">
+
+            <TextView
+                android:id="@+id/tv_TotalOrderFixed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="Total Expense"></TextView>
+            <TextView
+                android:id="@+id/tv_totalExpense"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Expense: 0"></TextView>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/cvOrder"
+        android:background="@color/lightDark"
+        android:layout_margin="10dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+<!--            <TextView-->
+<!--                android:id="@+id/MonthlyWiseSaleReportTV"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:gravity="center_horizontal"-->
+<!--                android:text=""-->
+<!--                android:textStyle="bold"></TextView>-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/CL_AboveItemDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/addExpenseBtn"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/ic_add_expense"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"></androidx.appcompat.widget.AppCompatButton>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/SelectDateTime"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/ic_search_expense"
+                    tools:layout_editor_absoluteX="188dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/addExpenseBtn"></androidx.appcompat.widget.AppCompatButton>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/MonthlyWiseSaleReportHeadTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/CL_AboveItemDetail">
+
+                <TextView
+                    android:id="@+id/monthTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:text="Date"
+                    android:textSize="14dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"></TextView>
+
+                <TextView
+                    android:id="@+id/Tv_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="174dp"
+                    android:text="Amount"
+                    android:textSize="14dp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/SaleTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="26dp"
+                    android:text="Action"
+                    android:textSize="14dp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/itemsswipetorefresh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_below="@id/MonthlyWiseSaleReportHeadTitle">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/ExpenseDetail_RV"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/MonthlyWiseSaleReportHeadTitle"></androidx.recyclerview.widget.RecyclerView>
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

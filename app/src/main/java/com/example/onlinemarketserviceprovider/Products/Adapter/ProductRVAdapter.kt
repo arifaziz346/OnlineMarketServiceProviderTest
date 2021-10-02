@@ -59,6 +59,7 @@ class ProductRVAdapter(contex:Context,product:ArrayList<Product>):RecyclerView.A
         var  photoThree:String?=null
         var  photoFour:String?=null
        var product = ProductList[position]
+
         holder.Name.text ="Name: "+product.ProductName.toString()
         holder.price.text ="Price: "+product.SellPrice.toString()
         holder.size.text ="Size: "+product.Size.toString()
@@ -195,7 +196,7 @@ class ProductRVAdapter(contex:Context,product:ArrayList<Product>):RecyclerView.A
 
     }
 
-    //Todo get Rroduct Detailf for update stock
+    //Todo get Rroduct Detail for update stock
     private fun getProductDetailForUpdateStock(product: Product, mDialogView: View) {
 
 
