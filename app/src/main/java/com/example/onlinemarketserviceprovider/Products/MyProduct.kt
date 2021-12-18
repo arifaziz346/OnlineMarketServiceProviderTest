@@ -87,7 +87,9 @@ class MyProduct : AppCompatActivity() {
                           ProductList.clear()
 
                           if(jsonObject.getBoolean("success")){
-
+                              if(products.length()<=0){
+                                  Toast.makeText(this,"Sorry, No data available...!",Toast.LENGTH_SHORT).show()
+                              }
                               loadingDialog.isDismiss()
 
                               for(i in 0 until products.length()){

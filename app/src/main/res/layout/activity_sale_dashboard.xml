@@ -38,13 +38,50 @@
             android:layout_marginTop="5dp"
             android:layout_below="@id/btnBack"/>
 
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvSalreportYear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_margin="10dp"
+        android:layout_below="@id/top_horizental_line"
+        android:background="@color/lightDark">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="10dp"
+
+            android:background="@color/lightDark">
+
+            <TextView
+                android:id="@+id/tv_Year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="Sale Report"></TextView>
+            <TextView
+                android:id="@+id/tv_totalSale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="Sale: 0"></TextView>
+            <TextView
+                android:id="@+id/tv_totalProfit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Profit: 0"></TextView>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </com.google.android.material.card.MaterialCardView>
+
         <com.google.android.material.card.MaterialCardView
-android:id="@+id/cvSalreportYear"
+          android:id="@+id/cvTotalExpense"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_margin="10dp"
-            android:layout_below="@id/top_horizental_line"
+            android:layout_below="@id/cvSalreportYear"
             android:background="@color/lightDark">
 
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -56,22 +93,16 @@ android:id="@+id/cvSalreportYear"
                 android:background="@color/lightDark">
 
                 <TextView
-                    android:id="@+id/tv_Year"
+                    android:id="@+id/tv_Expensefixed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:text="Sale Report"></TextView>
+                    android:text="Total Expense"></TextView>
                 <TextView
-                    android:id="@+id/tv_totalSale"
+                    android:id="@+id/tvTotalExpense"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
-                    android:text="Sale: 0"></TextView>
-                <TextView
-                    android:id="@+id/tv_totalProfit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Profit: 0"></TextView>
+                    android:text="Expense: 0"></TextView>
             </androidx.appcompat.widget.LinearLayoutCompat>
         </com.google.android.material.card.MaterialCardView>
 
@@ -81,7 +112,7 @@ android:id="@+id/cvSalreportYear"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_margin="10dp"
-        android:layout_below="@id/cvSalreportYear"
+        android:layout_below="@id/cvTotalExpense"
         android:background="@color/lightDark">
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -131,54 +162,70 @@ android:id="@+id/cvSalreportYear"
 
 
             <TextView
-                android:id="@+id/MonthlyWiseSaleReportTV"
+                android:id="@+id/tv_FilterSaleDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="5dp"
+                android:drawableLeft="@drawable/ic_search_expense"
+                android:gravity="center_horizontal"
+                android:text="Current Year Sale and Profit Report"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"></TextView>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/MonthlyWiseSaleReportHeadTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:text=""
-                android:textStyle="bold"></TextView>
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:id="@+id/MonthlyWiseSaleReportHeadTitle"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/MonthlyWiseSaleReportTV">
-    <TextView
-        android:id="@+id/monthTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:text="Month"
-        android:textSize="14dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></TextView>
+                android:layout_below="@id/tv_FilterSaleDetail">
 
-    <TextView
-        android:id="@+id/ProfitTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="166dp"
-        android:text="Sale"
-        android:textSize="14dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/monthTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="28dp"
+                    android:text="Month"
+                    android:textSize="14dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"></TextView>
 
-    <TextView
-        android:id="@+id/SaleTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="43dp"
-        android:text="Profit"
-        android:textSize="14dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/ProfitTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="166dp"
+                    android:text="Sale"
+                    android:textSize="14dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
+                <TextView
+                    android:id="@+id/SaleTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="43dp"
+                    android:text="Profit"
+                    android:textSize="14dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/itemsswipetorefresh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/MonthlyWiseSaleReportHeadTitle"
+                android:layout_weight="1">
             <ListView
                 android:id="@+id/MonthWiseSaleDetail_LV"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@id/MonthlyWiseSaleReportHeadTitle"
                ></ListView>
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
     </RelativeLayout>

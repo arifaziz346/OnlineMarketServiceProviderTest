@@ -13,6 +13,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -44,14 +45,16 @@ class Expense : AppCompatActivity() {
     private var TotalExpense=0
     private var RVexpenseRecyclerView:RecyclerView?=null
     private var sharedPreferences:SharedPreferences?=null
-
+    private var tvTotalExpense:TextView?=null
+    private val loadingDialog =LoadingDialog()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         var binding = ActivityExpenseBinding.inflate(layoutInflater)
         setContentView(binding.root)
         sharedPreferences=getSharedPreferences("ShopDetail", MODE_PRIVATE);
         LoadingDialog.startLoad(this)
-
+        tvTotalExpense =findViewById(R.id.tv_totalExpense)
+        RVexpenseRecyclerView=findViewById(R.id.ExpenseDetail_RV)
 
         binding.addExpenseBtn.setOnClickListener(View.OnClickListener {
 
@@ -86,7 +89,7 @@ class Expense : AppCompatActivity() {
             })
 
             btnCancel!!.setOnClickListener(View.OnClickListener {
-
+                mAlertDialog.dismiss()
             })
 
         })
@@ -99,7 +102,7 @@ class Expense : AppCompatActivity() {
         })
 //        RVexpenseRecyclerView =findViewById(R.id.ExpenseDetail_RV)
         binding.SelectDateTime.setOnClickListener(View.OnClickListener {
-            showDatePicker(binding)
+            showDatePicker()
         })
 
         swipe_refresh_layout=binding.itemsswipetorefresh
@@ -107,10 +110,12 @@ class Expense : AppCompatActivity() {
         swipe_refresh_layout!!.setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener {
             AdaperExpenseRV!!.notifyDataSetChanged()
             ExpenseList.clear()
-            getWorker(0,0,0,binding)
+            getWorker(0,0,0)
         })
 
-        getWorker(0,0,0,binding)
+
+        getWorker(0,0,0)
+
     }
 //Add Expense
     private fun addExpense(amount:String,description:String,binding: ActivityExpenseBinding) {
@@ -122,7 +127,7 @@ class Expense : AppCompatActivity() {
                          var jsonObject=JSONObject(it)
                         if(jsonObject.getBoolean("success")){
                             Toast.makeText(this,"Add successfully",Toast.LENGTH_LONG).show()
-                            getWorker(0,0,0,binding)
+                            getWorker(0,0,0)
                         }else{
                             Toast.makeText(this,"Fail to Add!"+jsonObject.toString(),Toast.LENGTH_LONG).show()
                         }
@@ -158,7 +163,7 @@ class Expense : AppCompatActivity() {
 
     }
 
-    private fun getWorker(dayOfMonth: Int, monthOfYear: Int, year: Int,binding: ActivityExpenseBinding) {
+    private fun getWorker(dayOfMonth: Int, monthOfYear: Int, year: Int) {
         TotalExpense=0;
 //        AdaperExpenseRV!!.notifyDataSetChanged()
         ExpenseList.clear()
@@ -179,9 +184,10 @@ class Expense : AppCompatActivity() {
 
                             var expense = jsonObject.getJSONArray("Expense")
                             if(expense.length()<=0){
-                                Toast.makeText(this,"Not Found!", Toast.LENGTH_LONG).show()
+                                Toast.makeText(this,"Not Found!Plz Swipe to Refersh", Toast.LENGTH_LONG).show()
                                 LoadingDialog.isDismiss()
                                 swipe_refresh_layout!!.setRefreshing(false)
+
                             }
                             for (i in 0 until expense.length()){
                                 var Expense = expense.getJSONObject(i)
@@ -196,8 +202,8 @@ class Expense : AppCompatActivity() {
                             }
 
                             //Display Total Expense
-                            binding.tvTotalExpense.text ="Total Expense:"+TotalExpense.toString()
-                            RVexpenseRecyclerView =binding.ExpenseDetailRV
+                            tvTotalExpense!!.text ="Total Expense:"+TotalExpense.toString()
+//                            RVexpenseRecyclerView =binding.ExpenseDetailRV
                             var layoutManager:RecyclerView.LayoutManager = LinearLayoutManager(this)
                             RVexpenseRecyclerView!!.layoutManager = layoutManager
                             AdaperExpenseRV =ExpenseAdapterRV(this,ExpenseList)
@@ -233,7 +239,7 @@ class Expense : AppCompatActivity() {
         }
 
     //this is used to display DatePicker-------------->
-    fun showDatePicker(binding: ActivityExpenseBinding) {
+    fun showDatePicker() {
 
         // DatePicker
 
@@ -249,12 +255,19 @@ class Expense : AppCompatActivity() {
 //            bin.setText("" + dayOfMonth + " " + MONTHS[monthOfYear] + ", " + year)
 //            binding.SelectDateTime.setText("" + dayOfMonth + " " + monthOfYear + ", " + year)
 //            searchExpense(dayOfMonth,monthOfYear,year,binding)
-            getWorker(dayOfMonth,(monthOfYear+1),year,binding)
+            getWorker(dayOfMonth,(monthOfYear+1),year)
 
         }, year, month, day)
 
         dpd.show()
         }
+    //it is uesed to refresh recycler View
+    fun notifyDataUpdate(){
+        LoadingDialog.startLoad(this)
+        getWorker(0,0,0)
+        AdaperExpenseRV!!.notifyDataSetChanged()
+    }
+
 
 
 

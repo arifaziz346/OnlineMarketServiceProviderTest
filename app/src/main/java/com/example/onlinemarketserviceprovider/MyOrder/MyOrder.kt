@@ -77,8 +77,13 @@ class MyOrder : AppCompatActivity() {
                     if (jsonObject.getBoolean("success")) {
 
                         val OrderDetail = jsonObject.getJSONArray("OrderDetail")
-                        OrderItems.clear()
 
+
+                        if(OrderDetail.length()<=0){
+                            Toast.makeText(this,"Sorry, No data available...!",Toast.LENGTH_SHORT).show()
+                         }
+
+                        OrderItems.clear()
                         for (i in 0 until OrderDetail.length()) {
                             var item = OrderDetail.getJSONObject(i)
 //                            var productDetail =item.getJSONArray("ProductDetail")

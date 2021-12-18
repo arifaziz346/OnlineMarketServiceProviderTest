@@ -86,7 +86,7 @@
         android:textStyle="italic"
         android:padding="3dp"
         android:text="Returns a substring of chars from a range of this char sequence starting at the startIndex and ending right
-Returns the substring of this string starting at the startIndex and ending right before the endIndex."
+        Returns the substring of this string starting at the startIndex and ending right before the endIndex."
         app:layout_constraintTop_toBottomOf="@+id/llAction"></TextView>
 <!--    <View-->
 <!--        android:id="@+id/lineBelowItems"-->

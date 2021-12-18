@@ -1,14 +1,15 @@
 package com.example.onlinemarketserviceprovider.Dashbord
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.BaseAdapter
-import android.widget.DatePicker
 import android.widget.ListView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -21,7 +22,6 @@ import com.example.onlinemarketserviceprovider.UrlConstant
 import com.example.onlinemarketserviceprovider.databinding.ActivitySaleDashboardBinding
 import org.json.JSONException
 import org.json.JSONObject
-import java.lang.reflect.Method
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
@@ -31,13 +31,14 @@ class SaleDashboard : AppCompatActivity() {
     private var adapterSaleProfitLV: MonthSaleProfitLV?=null
     private var MonthSaleProfit = ArrayList<SaleProfitDetail>()
     private val loadingDialog =LoadingDialog()
+    private var swipe_refresh_layout: SwipeRefreshLayout? =null
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         val binding = ActivitySaleDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.MonthlyWiseSaleReportTV.text ="Month Wise Sale Report of "+Calendar.getInstance().get(Calendar.YEAR)
+//        binding.MonthlyWiseSaleReportTV.text ="Month Wise Sale Report of "+Calendar.getInstance().get(Calendar.YEAR)
         getDashboardDetail(binding)
         SaleProfitDetail_LV=binding.MonthWiseSaleDetailLV
 
@@ -47,17 +48,30 @@ class SaleDashboard : AppCompatActivity() {
             finish()
         })
 
+        binding.tvFilterSaleDetail.setOnClickListener(
+            View.OnClickListener {
+                showDatePicker()
+            })
 
 
+        swipe_refresh_layout=binding.itemsswipetorefresh
+        swipe_refresh_layout!!.setProgressBackgroundColorSchemeColor(ContextCompat.getColor(this, R.color.colorPrimary))
+        swipe_refresh_layout!!.setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener {
 
-    }
+            monthWiseSaleProfitDetail()
 
-    private fun monthWiseSaleProfitDetail() {
+        })
+
+           }
+
+    private fun monthWiseSaleProfitDetail(year: Int =0) {
+        MonthSaleProfit.clear()
 //        loadingDialog.startLoad(this)
          var sharedPreferance=getSharedPreferences("ShopDetail", MODE_PRIVATE);
          val shop_id =sharedPreferance.getString("ShopID",null)
                  val queue = Volley.newRequestQueue(this)
-                 val joGetProductRequest: StringRequest = object: StringRequest(Method.GET, UrlConstant.GetMonthWiseSaleDetail+shop_id,
+                 val joGetProductRequest: StringRequest = object: StringRequest(Method.GET,
+                     UrlConstant.GetMonthWiseSaleDetail+shop_id+"&year="+year,
                      Response.Listener {
 
 
@@ -65,6 +79,12 @@ class SaleDashboard : AppCompatActivity() {
                              var jsonObject = JSONObject(it)
                              var items = jsonObject.getJSONArray("MonthlySaleProfitDetail")
                              if(jsonObject.getBoolean("success")){
+
+                                 if(items.length()<=0){
+                                     Toast.makeText(this,"Sorry,No data available!Swipe to refresh!",Toast.LENGTH_LONG).show()
+                                     loadingDialog.isDismiss()
+                                     swipe_refresh_layout!!.setRefreshing(false)
+                                 }
 
                                  for(i in 0 until items.length()){
                                      var SaleProfitl=items.getJSONObject(i)
@@ -76,17 +96,20 @@ class SaleDashboard : AppCompatActivity() {
                                  adapterSaleProfitLV = MonthSaleProfitLV(this,MonthSaleProfit)
                                  SaleProfitDetail_LV!!.adapter=adapterSaleProfitLV
                                  loadingDialog.isDismiss()
+                                 swipe_refresh_layout!!.setRefreshing(false)
                                  }
                              loadingDialog.isDismiss()
 
                          }catch(e:JSONException){
                          Toast.makeText(this,"JsonException:"+e,Toast.LENGTH_LONG).show()
+                             swipe_refresh_layout!!.setRefreshing(false)
                              loadingDialog.isDismiss()
                          }
 
                      }, Response.ErrorListener {
                          loadingDialog.isDismiss()
                          Toast.makeText(this,"Vollery Error:"+it.printStackTrace(), Toast.LENGTH_LONG).show()
+                         swipe_refresh_layout!!.setRefreshing(false)
 
                      }){
 
@@ -126,6 +149,7 @@ class SaleDashboard : AppCompatActivity() {
                         binding.tvTotalOrder.text ="Total Orders: "+DashBoardDetail.getString("TotalOrder")
                         binding.tvTotalOrderAbandoned.text ="Total  Abandoned: "+DashBoardDetail.getString("TotalAbandoned")
                         binding.tvTotalOrderPending.text ="Total Pending: "+DashBoardDetail.getString("TotalOrderPending")
+                        binding.tvTotalExpense.text ="Total Expense: "+DashBoardDetail.getString("TotalExpense")
                         loadingDialog.isDismiss()
                     }
                 }catch (e: JSONException){
@@ -164,5 +188,29 @@ class SaleDashboard : AppCompatActivity() {
         finish()
         val intent =Intent(this,MainActivity::class.java)
         startActivity(intent)
+    }
+
+    //Date Picker----------------------->
+    fun showDatePicker() {
+
+        // DatePicker
+
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+
+
+        val dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+
+            // Display Selected date in textbox
+//            bin.setText("" + dayOfMonth + " " + MONTHS[monthOfYear] + ", " + year)
+//            binding.SelectDateTime.setText("" + dayOfMonth + " " + monthOfYear + ", " + year)
+//            searchExpense(dayOfMonth,monthOfYear,year,binding)
+//            getWorker(dayOfMonth,(monthOfYear+1),year)
+            monthWiseSaleProfitDetail(year)
+        }, year, month, day)
+
+        dpd.show()
     }
 }

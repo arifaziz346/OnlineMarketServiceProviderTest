@@ -24,6 +24,8 @@ public class UrlConstant {
         val GetExpense:String=URL+"api/GetExpense"
         val SearchExpense:String=URL+"api/SearchExpense"
         val CreateExpense:String=URL+"api/CreateExpense"
+        val EditExpense:String=URL+"api/EditExpense"
+        val DeleteExpense:String=URL+"api/DeleteExpense"
 
     }
 }

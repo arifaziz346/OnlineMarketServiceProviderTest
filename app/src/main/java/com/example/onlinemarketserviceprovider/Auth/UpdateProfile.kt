@@ -188,7 +188,10 @@ private fun validation(binding: ActivityUpdateProfileBinding):Boolean{
         binding.txtLayoutShopPhoneSignUp.error="Phone Number can't be greater then 11"
         return false
     }
-
+    else if(binding.etShopPhone.getText().toString().count()<11){
+        binding.txtLayoutShopPhoneSignUp.error="Phone Number can't be less then 11"
+        return false
+    }
 
     else if(binding.etCity.getText().toString()==""){
         binding.txtLayoutCitySignUp.error="Plz Enter Your City Name"

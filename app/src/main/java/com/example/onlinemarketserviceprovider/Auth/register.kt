@@ -175,6 +175,11 @@ class register : AppCompatActivity() {
            binding.txtLayoutPasswordSignUp.error="Plz Enter Your Password"
            return false
        }
+
+       else if(binding.PasswordSignUp.getText()!!.length<8){
+           binding.txtLayoutPasswordSignUp.error="Password size can't less then 8 character"
+           return false
+       }
         else if(binding.ShopPhoneSignUp.getText().toString()==""){
            binding.txtLayoutShopPhoneSignUp.error="Plz Enter Your Phone Number"
            return false

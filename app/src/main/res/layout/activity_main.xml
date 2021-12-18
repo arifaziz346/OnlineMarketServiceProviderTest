@@ -341,7 +341,6 @@
                     android:id="@+id/AssetsTV"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/assets_icon"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent"></ImageView>
@@ -349,7 +348,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Assets"
+                    android:text="WellCome"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/AssetsTV"></TextView>
